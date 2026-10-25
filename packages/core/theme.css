@@ -1,0 +1,212 @@
+/*
+ * Elo UI theme
+ *
+ * Primitive tokens (--elo-gray-*, --elo-indigo-*, ...) are raw values.
+ * Semantic tokens (--elo-color-*, --elo-control-*, ...) are what components use.
+ * To re-brand, override semantic tokens; leave primitives alone.
+ *
+ * Theme:   follows prefers-color-scheme; set data-elo-theme="light|dark" on any
+ *          element to force a theme for that subtree.
+ * Density: set data-elo-density="compact" on any element for tighter controls.
+ */
+
+/* ----------------------------------------------------------------------------
+ * Primitives
+ * ------------------------------------------------------------------------- */
+:root {
+  --elo-white: #ffffff;
+  --elo-black: #000000;
+
+  --elo-gray-50: #fafafa;
+  --elo-gray-100: #f4f4f5;
+  --elo-gray-200: #e4e4e7;
+  --elo-gray-300: #d4d4d8;
+  --elo-gray-400: #a1a1aa;
+  --elo-gray-500: #71717a;
+  --elo-gray-600: #52525b;
+  --elo-gray-700: #3f3f46;
+  --elo-gray-800: #27272a;
+  --elo-gray-900: #18181b;
+  --elo-gray-950: #09090b;
+
+  --elo-indigo-50: #eef2ff;
+  --elo-indigo-100: #e0e7ff;
+  --elo-indigo-200: #c7d2fe;
+  --elo-indigo-300: #a5b4fc;
+  --elo-indigo-400: #818cf8;
+  --elo-indigo-500: #6366f1;
+  --elo-indigo-600: #4f46e5;
+  --elo-indigo-700: #4338ca;
+  --elo-indigo-800: #3730a3;
+  --elo-indigo-900: #312e81;
+  --elo-indigo-950: #1e1b4b;
+
+  --elo-red-50: #fef2f2;
+  --elo-red-100: #fee2e2;
+  --elo-red-200: #fecaca;
+  --elo-red-300: #fca5a5;
+  --elo-red-400: #f87171;
+  --elo-red-500: #ef4444;
+  --elo-red-600: #dc2626;
+  --elo-red-700: #b91c1c;
+  --elo-red-800: #991b1b;
+  --elo-red-900: #7f1d1d;
+  --elo-red-950: #450a0a;
+}
+
+/* ----------------------------------------------------------------------------
+ * Theme-independent semantic tokens
+ * ------------------------------------------------------------------------- */
+:root {
+  --elo-font-family:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --elo-font-size-sm: 0.8125rem;
+  --elo-font-size-md: 0.875rem;
+  --elo-font-size-lg: 1rem;
+  --elo-font-weight-regular: 400;
+  --elo-font-weight-medium: 500;
+  --elo-font-weight-semibold: 600;
+  --elo-line-height: 1.5;
+
+  --elo-radius-sm: 4px;
+  --elo-radius-md: 6px;
+  --elo-radius-lg: 8px;
+  --elo-radius-full: 9999px;
+
+  --elo-border-width: 1px;
+  --elo-focus-ring-width: 2px;
+  --elo-focus-ring-offset: 2px;
+
+  --elo-duration-fast: 120ms;
+  --elo-duration-normal: 200ms;
+  --elo-easing: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ----------------------------------------------------------------------------
+ * Density (comfortable is the default)
+ * ------------------------------------------------------------------------- */
+:root,
+[data-elo-density='comfortable'] {
+  --elo-space-1: 0.25rem;
+  --elo-space-2: 0.5rem;
+  --elo-space-3: 0.75rem;
+  --elo-space-4: 1rem;
+  --elo-space-5: 1.25rem;
+  --elo-space-6: 1.5rem;
+
+  --elo-control-height-sm: 2rem;
+  --elo-control-height-md: 2.25rem;
+  --elo-control-height-lg: 2.75rem;
+  --elo-control-padding-x-sm: 0.625rem;
+  --elo-control-padding-x-md: 0.875rem;
+  --elo-control-padding-x-lg: 1.125rem;
+  --elo-control-gap: 0.5rem;
+}
+
+[data-elo-density='compact'] {
+  --elo-space-1: 0.125rem;
+  --elo-space-2: 0.375rem;
+  --elo-space-3: 0.5rem;
+  --elo-space-4: 0.75rem;
+  --elo-space-5: 1rem;
+  --elo-space-6: 1.25rem;
+
+  --elo-control-height-sm: 1.625rem;
+  --elo-control-height-md: 1.875rem;
+  --elo-control-height-lg: 2.25rem;
+  --elo-control-padding-x-sm: 0.5rem;
+  --elo-control-padding-x-md: 0.625rem;
+  --elo-control-padding-x-lg: 0.875rem;
+  --elo-control-gap: 0.375rem;
+}
+
+/* ----------------------------------------------------------------------------
+ * Light theme (default)
+ * ------------------------------------------------------------------------- */
+:root,
+[data-elo-theme='light'] {
+  color-scheme: light;
+
+  --elo-color-bg: var(--elo-white);
+  --elo-color-surface: var(--elo-white);
+  --elo-color-surface-hover: var(--elo-gray-100);
+  --elo-color-surface-active: var(--elo-gray-200);
+  --elo-color-border: var(--elo-gray-200);
+  --elo-color-border-strong: var(--elo-gray-300);
+  --elo-color-fg: var(--elo-gray-900);
+  --elo-color-fg-muted: var(--elo-gray-600);
+
+  --elo-color-accent: var(--elo-indigo-600);
+  --elo-color-accent-hover: var(--elo-indigo-700);
+  --elo-color-accent-active: var(--elo-indigo-800);
+  --elo-color-accent-fg: var(--elo-white);
+  --elo-color-accent-text: var(--elo-indigo-700);
+
+  --elo-color-danger: var(--elo-red-600);
+  --elo-color-danger-hover: var(--elo-red-700);
+  --elo-color-danger-active: var(--elo-red-800);
+  --elo-color-danger-fg: var(--elo-white);
+
+  --elo-color-focus-ring: var(--elo-indigo-600);
+  --elo-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+
+/* ----------------------------------------------------------------------------
+ * Dark theme: automatic, unless light is forced on the root
+ * ------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-elo-theme='light']) {
+    color-scheme: dark;
+
+    --elo-color-bg: var(--elo-gray-950);
+    --elo-color-surface: var(--elo-gray-900);
+    --elo-color-surface-hover: var(--elo-gray-800);
+    --elo-color-surface-active: var(--elo-gray-700);
+    --elo-color-border: var(--elo-gray-800);
+    --elo-color-border-strong: var(--elo-gray-700);
+    --elo-color-fg: var(--elo-gray-50);
+    --elo-color-fg-muted: var(--elo-gray-400);
+
+    --elo-color-accent: var(--elo-indigo-600);
+    --elo-color-accent-hover: var(--elo-indigo-700);
+    --elo-color-accent-active: var(--elo-indigo-800);
+    --elo-color-accent-fg: var(--elo-white);
+    --elo-color-accent-text: var(--elo-indigo-300);
+
+    --elo-color-danger: var(--elo-red-600);
+    --elo-color-danger-hover: var(--elo-red-700);
+    --elo-color-danger-active: var(--elo-red-800);
+    --elo-color-danger-fg: var(--elo-white);
+
+    --elo-color-focus-ring: var(--elo-indigo-400);
+    --elo-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  }
+}
+
+/* Dark theme: forced */
+[data-elo-theme='dark'] {
+  color-scheme: dark;
+
+  --elo-color-bg: var(--elo-gray-950);
+  --elo-color-surface: var(--elo-gray-900);
+  --elo-color-surface-hover: var(--elo-gray-800);
+  --elo-color-surface-active: var(--elo-gray-700);
+  --elo-color-border: var(--elo-gray-800);
+  --elo-color-border-strong: var(--elo-gray-700);
+  --elo-color-fg: var(--elo-gray-50);
+  --elo-color-fg-muted: var(--elo-gray-400);
+
+  --elo-color-accent: var(--elo-indigo-600);
+  --elo-color-accent-hover: var(--elo-indigo-700);
+  --elo-color-accent-active: var(--elo-indigo-800);
+  --elo-color-accent-fg: var(--elo-white);
+  --elo-color-accent-text: var(--elo-indigo-300);
+
+  --elo-color-danger: var(--elo-red-600);
+  --elo-color-danger-hover: var(--elo-red-700);
+  --elo-color-danger-active: var(--elo-red-800);
+  --elo-color-danger-fg: var(--elo-white);
+
+  --elo-color-focus-ring: var(--elo-indigo-400);
+  --elo-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+}

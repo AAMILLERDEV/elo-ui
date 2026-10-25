@@ -1,0 +1,51 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":dependencyDashboard"],
+  "timezone": "America/Toronto",
+  "schedule": ["before 6am on monday"],
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on the first day of the month"]
+  },
+  "packageRules": [
+    {
+      "description": "typescript-eslint and @angular/compiler-cli don't support TypeScript 7 yet.",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7"
+    },
+    {
+      "description": "Wrapper peer ranges are a support policy, not a dependency to bump.",
+      "matchDepTypes": ["peerDependencies"],
+      "enabled": false
+    },
+    {
+      "groupName": "Vitest and Playwright",
+      "matchPackageNames": ["vitest", "@vitest/**", "playwright"]
+    },
+    {
+      "groupName": "Angular",
+      "matchPackageNames": ["@angular/**", "ng-packagr", "rxjs", "tslib"]
+    },
+    {
+      "groupName": "Lint and format",
+      "matchPackageNames": [
+        "eslint",
+        "@eslint/**",
+        "typescript-eslint",
+        "eslint-*",
+        "globals",
+        "prettier",
+        "prettier-plugin-*"
+      ]
+    },
+    {
+      "groupName": "Astro",
+      "matchPackageNames": ["astro", "@astrojs/**"]
+    },
+    {
+      "groupName": "React",
+      "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom", "@lit/react"]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+dist/
+.turbo/
+.astro/
+pnpm-lock.yaml
+custom-elements.json
+packages/*/src/generated/
+planning/

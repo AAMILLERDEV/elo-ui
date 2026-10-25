@@ -1,0 +1,60 @@
+{
+  "name": "@elo-ui/components",
+  "version": "0.0.0",
+  "description": "Accessible, framework-agnostic web components.",
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "lit",
+    "accessibility",
+    "a11y",
+    "ui",
+    "components",
+    "dashboard"
+  ],
+  "homepage": "https://github.com/AAMILLERDEV/elo-ui/tree/master/packages/components#readme",
+  "bugs": {
+    "url": "https://github.com/AAMILLERDEV/elo-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AAMILLERDEV/elo-ui.git",
+    "directory": "packages/components"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./button": {
+      "types": "./dist/button/button.d.ts",
+      "default": "./dist/button/button.js"
+    },
+    "./custom-elements.json": "./custom-elements.json"
+  },
+  "customElements": "custom-elements.json",
+  "files": [
+    "dist",
+    "custom-elements.json"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && cem analyze",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint:package": "publint --pack pnpm --strict && attw --pack . --profile esm-only"
+  },
+  "dependencies": {
+    "@elo-ui/core": "workspace:*",
+    "lit": "catalog:"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.11.0",
+    "@elo-ui/build-tools": "workspace:*",
+    "axe-core": "^4.14.0",
+    "playwright": "catalog:",
+    "vitest": "catalog:"
+  }
+}

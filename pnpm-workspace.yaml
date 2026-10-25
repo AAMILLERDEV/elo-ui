@@ -1,0 +1,27 @@
+packages:
+  - packages/*
+  - apps/*
+  - tools/*
+
+# Shared dependency versions. Packages reference these as "catalog:".
+catalogMode: prefer
+catalog:
+  # Pinned to 6.0: typescript-eslint and @angular/compiler-cli don't support TypeScript 7 yet.
+  typescript: ~6.0.3
+  vitest: ^5.0.5
+  '@vitest/browser-playwright': ^5.0.5
+  playwright: ^1.64.1
+  lit: ^3.3.3
+  vite: ^8.3.5
+  '@arethetypeswrong/cli': ^0.18.5
+  publint: ^0.3.25
+  '@elo-ui/build-tools': workspace:*
+
+# Dependency install scripts. pnpm blocks these by default; decide per package.
+allowBuilds:
+  # napi-rs postinstall only fetches a wasm fallback; the native binary comes from optionalDependencies.
+  rs-module-lexer: false
+  # Platform binaries come from optionalDependencies; postinstall only verifies them.
+  esbuild: false
+  # Prebuilt binaries ship via optionalDependencies; postinstall is a node-gyp fallback.
+  '@parcel/watcher': false

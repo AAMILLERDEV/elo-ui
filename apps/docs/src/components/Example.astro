@@ -1,0 +1,39 @@
+---
+import { Code } from 'astro:components';
+import { codeThemes } from '../code-themes';
+
+interface Props {
+  /** Markup rendered as the live preview and shown as the HTML snippet. */
+  code: string;
+}
+
+const { code } = Astro.props;
+---
+
+<figure class="example">
+  <div class="preview" set:html={code} />
+  <Code code={code.trim()} lang="html" themes={codeThemes} />
+</figure>
+
+<style>
+  .example {
+    margin: 1rem 0 0;
+    overflow: hidden;
+    border: 1px solid var(--elo-color-border);
+    border-radius: var(--elo-radius-lg);
+  }
+
+  .preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--elo-color-surface);
+  }
+
+  .example :global(pre.astro-code) {
+    border-top: 1px solid var(--elo-color-border);
+    border-radius: 0;
+  }
+</style>

@@ -1,0 +1,57 @@
+{
+  "name": "@elo-ui/core",
+  "version": "0.0.0",
+  "description": "Design tokens, theme, and shared utilities for Elo UI.",
+  "keywords": [
+    "web-components",
+    "design-tokens",
+    "accessibility",
+    "a11y",
+    "lit",
+    "theme"
+  ],
+  "homepage": "https://github.com/AAMILLERDEV/elo-ui/tree/master/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/AAMILLERDEV/elo-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AAMILLERDEV/elo-ui.git",
+    "directory": "packages/core"
+  },
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./theme.css": {
+      "types": "./theme.css.d.ts",
+      "default": "./theme.css"
+    }
+  },
+  "files": [
+    "dist",
+    "theme.css",
+    "theme.css.d.ts"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint:package": "publint --pack pnpm --strict && attw --pack . --profile esm-only"
+  },
+  "dependencies": {
+    "lit": "catalog:"
+  },
+  "devDependencies": {
+    "@elo-ui/build-tools": "catalog:",
+    "playwright": "catalog:",
+    "vitest": "catalog:"
+  }
+}

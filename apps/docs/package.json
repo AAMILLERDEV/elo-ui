@@ -1,0 +1,21 @@
+{
+  "name": "@elo-ui/docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check"
+  },
+  "dependencies": {
+    "@elo-ui/components": "workspace:*",
+    "@elo-ui/core": "workspace:*",
+    "astro": "^7.4.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "catalog:"
+  }
+}

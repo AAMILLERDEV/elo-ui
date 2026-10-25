@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.turbo/
+.astro/
+*.tsbuildinfo
+coverage/
+.vitest-attachments/
+__screenshots__/
+test-results/
+
+# Generated
+custom-elements.json
+packages/*/src/generated/
+.vitest/
+
+# Business planning (pricing, strategy): kept local while the repo is public
+planning/
+
+# Local Claude instructions
+CLAUDE.md

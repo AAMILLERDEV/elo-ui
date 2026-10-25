@@ -1,0 +1,50 @@
+---
+import { Code } from 'astro:components';
+import { codeThemes } from '../code-themes';
+import Docs from '../layouts/Docs.astro';
+---
+
+<Docs
+  title="Elo UI"
+  description="Accessible, framework-agnostic web components for dashboards and admin interfaces."
+>
+  <h1>Elo UI</h1>
+  <p class="lede">
+    Accessible, framework-agnostic web components for dashboards and admin interfaces. Built on web
+    standards, tested with real browsers and screen readers, and usable in React, Vue, Angular, or
+    plain HTML.
+  </p>
+
+  <h2>Install</h2>
+  <Code code="npm install @elo-ui/core @elo-ui/components" lang="sh" themes={codeThemes} />
+
+  <h2>Use</h2>
+  <p>Load the theme once, then import the components you use.</p>
+  <Code
+    code={`import '@elo-ui/core/theme.css';
+import '@elo-ui/components/button';`}
+    lang="js"
+    themes={codeThemes}
+  />
+  <p>
+    Using a framework? Add <code>@elo-ui/react</code>, <code>@elo-ui/vue</code>, or
+    <code>@elo-ui/angular</code> for typed bindings. See each component's page for examples.
+  </p>
+
+  <h2>Theming</h2>
+  <p>
+    Elo UI follows the user's color scheme. Set <code>data-elo-theme="light"</code> or
+    <code>"dark"</code> on any element to force a theme for that subtree, and
+    <code>data-elo-density="compact"</code> for tighter controls. Re-brand by overriding semantic
+    tokens such as <code>--elo-color-accent</code>.
+  </p>
+  <Code
+    code={`:root {
+  --elo-color-accent: #0f766e;
+  --elo-color-accent-hover: #115e59;
+  --elo-color-accent-active: #134e4a;
+}`}
+    lang="css"
+    themes={codeThemes}
+  />
+</Docs>

@@ -1,0 +1,54 @@
+{
+  "name": "@elo-ui/vue",
+  "version": "0.0.0",
+  "description": "Vue integration and template types for Elo UI components.",
+  "keywords": [
+    "vue",
+    "web-components",
+    "lit",
+    "accessibility",
+    "ui",
+    "components"
+  ],
+  "homepage": "https://github.com/AAMILLERDEV/elo-ui/tree/master/packages/vue#readme",
+  "bugs": {
+    "url": "https://github.com/AAMILLERDEV/elo-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AAMILLERDEV/elo-ui.git",
+    "directory": "packages/vue"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "generate": "elo-wrapper-gen vue",
+    "build": "pnpm generate && tsc -p tsconfig.build.json && node scripts/copy-dts.js",
+    "typecheck": "pnpm generate && tsc --noEmit",
+    "test": "pnpm generate && vitest run",
+    "lint:package": "publint --pack pnpm --strict && attw --pack . --profile esm-only"
+  },
+  "devDependencies": {
+    "@elo-ui/build-tools": "catalog:",
+    "@elo-ui/core": "workspace:*",
+    "@elo-ui/wrapper-gen": "workspace:*",
+    "playwright": "catalog:",
+    "vitest": "catalog:",
+    "vue": "^3.5.44"
+  },
+  "dependencies": {
+    "@elo-ui/components": "workspace:*"
+  },
+  "peerDependencies": {
+    "vue": ">=3.3"
+  }
+}

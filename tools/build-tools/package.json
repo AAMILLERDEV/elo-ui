@@ -1,0 +1,25 @@
+{
+  "name": "@elo-ui/build-tools",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./vite": {
+      "types": "./src/vite-ts-decorators.d.ts",
+      "default": "./src/vite-ts-decorators.js"
+    },
+    "./vitest": {
+      "types": "./src/vitest-browser.d.ts",
+      "default": "./src/vitest-browser.js"
+    }
+  },
+  "devDependencies": {
+    "@vitest/browser-playwright": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}

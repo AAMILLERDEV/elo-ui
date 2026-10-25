@@ -1,0 +1,350 @@
+---
+import '@elo-ui/core/theme.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const path = Astro.url.pathname.replace(/(\.html|\/)$/, '').replace(/\/index$/, '') || '/';
+
+const nav = [
+  { heading: 'Getting started', links: [{ href: '/', label: 'Introduction' }] },
+  { heading: 'Components', links: [{ href: '/components/button', label: 'Button' }] },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title === 'Elo UI' ? title : `${title} · Elo UI`}</title>
+    <meta name="description" content={description} />
+    <script is:inline>
+      // Apply saved preferences before paint to avoid a theme flash.
+      try {
+        const theme = localStorage.getItem('elo-docs-theme');
+        const density = localStorage.getItem('elo-docs-density');
+        if (theme === 'light' || theme === 'dark')
+          document.documentElement.dataset.eloTheme = theme;
+        if (density === 'compact') document.documentElement.dataset.eloDensity = density;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <header class="topbar">
+      <a class="wordmark" href="/">
+        Elo UI
+      </a>
+      <div class="prefs">
+        <label>
+          Theme
+          <select id="theme-select">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <label>
+          Density
+          <select id="density-select">
+            <option value="comfortable">Comfortable</option>
+            <option value="compact">Compact</option>
+          </select>
+        </label>
+      </div>
+    </header>
+
+    <div class="shell">
+      <nav class="sidebar" aria-label="Documentation">
+        {nav.map((section) => (
+          <section>
+            <h2>{section.heading}</h2>
+            <ul>
+              {section.links.map((link) => (
+                <li>
+                  <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </nav>
+      <main id="main">
+        <slot />
+      </main>
+    </div>
+
+    <script>
+      import '@elo-ui/components';
+
+      const root = document.documentElement;
+      const themeSelect = document.querySelector<HTMLSelectElement>('#theme-select')!;
+      const densitySelect = document.querySelector<HTMLSelectElement>('#density-select')!;
+
+      themeSelect.value = root.dataset.eloTheme ?? 'system';
+      densitySelect.value = root.dataset.eloDensity ?? 'comfortable';
+
+      const save = (key: string, value: string | null) => {
+        try {
+          if (value === null) localStorage.removeItem(key);
+          else localStorage.setItem(key, value);
+        } catch {}
+      };
+
+      themeSelect.addEventListener('change', () => {
+        const value = themeSelect.value;
+        if (value === 'system') delete root.dataset.eloTheme;
+        else root.dataset.eloTheme = value;
+        save('elo-docs-theme', value === 'system' ? null : value);
+      });
+
+      densitySelect.addEventListener('change', () => {
+        const value = densitySelect.value;
+        if (value === 'comfortable') delete root.dataset.eloDensity;
+        else root.dataset.eloDensity = value;
+        save('elo-docs-density', value === 'comfortable' ? null : value);
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  body {
+    margin: 0;
+    font-family: var(--elo-font-family);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--elo-color-fg);
+    background: var(--elo-color-bg);
+  }
+
+  a {
+    color: var(--elo-color-accent-text);
+  }
+
+  :focus-visible {
+    outline: var(--elo-focus-ring-width) solid var(--elo-color-focus-ring);
+    outline-offset: var(--elo-focus-ring-offset);
+  }
+
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    margin: 2.5rem 0 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    margin: 1.75rem 0 0.5rem;
+    font-size: 1rem;
+  }
+
+  .lede {
+    margin: 0 0 2rem;
+    font-size: 1.0625rem;
+    color: var(--elo-color-fg-muted);
+  }
+
+  code {
+    font-family: ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+    font-size: 0.875em;
+  }
+
+  :not(pre) > code {
+    padding: 0.125em 0.375em;
+    background: var(--elo-color-surface-hover);
+    border-radius: var(--elo-radius-sm);
+  }
+
+  pre.astro-code {
+    margin: 0;
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    border-radius: var(--elo-radius-md);
+  }
+
+  /* Shiki dual themes: switch code blocks to their dark colors with the docs theme. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-elo-theme='light']) .astro-code,
+    :root:not([data-elo-theme='light']) .astro-code span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+    }
+  }
+
+  [data-elo-theme='dark'] .astro-code,
+  [data-elo-theme='dark'] .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  th,
+  td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--elo-color-border);
+  }
+
+  th {
+    font-weight: var(--elo-font-weight-semibold);
+    white-space: nowrap;
+  }
+</style>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--elo-color-surface);
+    border-radius: var(--elo-radius-md);
+  }
+
+  .skip-link:focus {
+    top: 0.5rem;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    background: var(--elo-color-bg);
+    border-bottom: 1px solid var(--elo-color-border);
+  }
+
+  .wordmark {
+    font-size: 1.125rem;
+    font-weight: var(--elo-font-weight-semibold);
+    color: var(--elo-color-fg);
+    text-decoration: none;
+  }
+
+  .prefs {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8125rem;
+    color: var(--elo-color-fg-muted);
+  }
+
+  .prefs label {
+    display: flex;
+    gap: 0.375rem;
+    align-items: center;
+  }
+
+  .prefs select {
+    font: inherit;
+    color: var(--elo-color-fg);
+    background: var(--elo-color-surface);
+    border: 1px solid var(--elo-color-border-strong);
+    border-radius: var(--elo-radius-sm);
+    padding: 0.125rem 0.25rem;
+  }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .sidebar {
+    padding: 1.5rem;
+    border-right: 1px solid var(--elo-color-border);
+  }
+
+  .sidebar h2 {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: var(--elo-font-weight-semibold);
+    color: var(--elo-color-fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .sidebar section + section {
+    margin-top: 1.5rem;
+  }
+
+  .sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sidebar a {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    margin: 0 -0.5rem;
+    color: var(--elo-color-fg);
+    text-decoration: none;
+    border-radius: var(--elo-radius-sm);
+  }
+
+  .sidebar a:hover {
+    background: var(--elo-color-surface-hover);
+  }
+
+  .sidebar a[aria-current='page'] {
+    font-weight: var(--elo-font-weight-medium);
+    color: var(--elo-color-accent-text);
+    background: var(--elo-color-surface-hover);
+  }
+
+  main {
+    min-width: 0;
+    padding: 2rem 2.5rem 4rem;
+  }
+
+  @media (max-width: 760px) {
+    .topbar {
+      padding: 0.75rem 1rem;
+    }
+
+    .shell {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      padding: 1rem;
+      border-right: 0;
+      border-bottom: 1px solid var(--elo-color-border);
+    }
+
+    main {
+      padding: 1.5rem 1rem 3rem;
+    }
+  }
+</style>

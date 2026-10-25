@@ -1,0 +1,57 @@
+{
+  "name": "@elo-ui/angular",
+  "version": "0.0.0",
+  "description": "Angular directives for Elo UI components.",
+  "keywords": [
+    "angular",
+    "web-components",
+    "lit",
+    "accessibility",
+    "ui",
+    "components"
+  ],
+  "homepage": "https://github.com/AAMILLERDEV/elo-ui/tree/master/packages/angular#readme",
+  "bugs": {
+    "url": "https://github.com/AAMILLERDEV/elo-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AAMILLERDEV/elo-ui.git",
+    "directory": "packages/angular"
+  },
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "generate": "elo-wrapper-gen angular",
+    "build": "pnpm generate && ng-packagr -p ng-package.json -c tsconfig.build.json",
+    "typecheck": "pnpm generate && tsc --noEmit",
+    "test": "pnpm generate && vitest run",
+    "lint:package": "publint --pack pnpm --strict && attw --pack dist --profile esm-only"
+  },
+  "dependencies": {
+    "@elo-ui/components": "workspace:*",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@angular/common": "^22.2.3",
+    "@angular/compiler": "^22.2.3",
+    "@angular/compiler-cli": "^22.2.3",
+    "@angular/core": "^22.2.3",
+    "@angular/platform-browser": "^22.2.3",
+    "@elo-ui/build-tools": "catalog:",
+    "@elo-ui/core": "workspace:*",
+    "@elo-ui/wrapper-gen": "workspace:*",
+    "ng-packagr": "^22.2.5",
+    "playwright": "catalog:",
+    "rxjs": "^7.8.2",
+    "vitest": "catalog:"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=20.0.0"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "linkDirectory": false
+  },
+  "sideEffects": false
+}

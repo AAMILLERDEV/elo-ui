@@ -1,0 +1,58 @@
+{
+  "name": "@elo-ui/react",
+  "version": "0.0.0",
+  "description": "React wrappers for Elo UI components.",
+  "keywords": [
+    "react",
+    "web-components",
+    "lit",
+    "accessibility",
+    "ui",
+    "components"
+  ],
+  "homepage": "https://github.com/AAMILLERDEV/elo-ui/tree/master/packages/react#readme",
+  "bugs": {
+    "url": "https://github.com/AAMILLERDEV/elo-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AAMILLERDEV/elo-ui.git",
+    "directory": "packages/react"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "generate": "elo-wrapper-gen react",
+    "build": "pnpm generate && tsc -p tsconfig.build.json",
+    "typecheck": "pnpm generate && tsc --noEmit",
+    "test": "pnpm generate && vitest run",
+    "lint:package": "publint --pack pnpm --strict && attw --pack . --profile esm-only"
+  },
+  "dependencies": {
+    "@elo-ui/components": "workspace:*",
+    "@lit/react": "^1.0.8"
+  },
+  "devDependencies": {
+    "@elo-ui/build-tools": "catalog:",
+    "@elo-ui/core": "workspace:*",
+    "@elo-ui/wrapper-gen": "workspace:*",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "playwright": "catalog:",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "vitest": "catalog:"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  }
+}

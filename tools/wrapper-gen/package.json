@@ -1,0 +1,9 @@
+{
+  "name": "@elo-ui/wrapper-gen",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "elo-wrapper-gen": "./src/cli.js"
+  }
+}
