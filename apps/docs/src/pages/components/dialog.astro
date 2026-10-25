@@ -1,0 +1,88 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Dialog"
+  description="An accessible modal dialog and drawer web component built on the native dialog element."
+>
+  <h1>Dialog</h1>
+  <p class="lede">
+    A modal dialog built on the native <code>&lt;dialog&gt;</code>: the page behind it is inert,
+    focus stays inside, and Escape closes it. Set <code>placement</code> to turn it into a side
+    drawer.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<elo-button onclick="this.nextElementSibling.show()">Invite people</elo-button>
+<elo-dialog label="Invite people">
+  <elo-input label="Email address" type="email" autofocus></elo-input>
+  <elo-button slot="footer" onclick="this.closest('elo-dialog').close()">Cancel</elo-button>
+  <elo-button slot="footer" variant="primary">Send invite</elo-button>
+</elo-dialog>`}
+  />
+
+  <h2>Confirm a destructive action</h2>
+  <p>Use a small dialog and say what will happen in the button label.</p>
+  <Example
+    code={`<elo-button variant="danger" onclick="this.nextElementSibling.show()">Delete project</elo-button>
+<elo-dialog label="Delete Acme Website?" size="sm">
+  This permanently deletes the project and its 128 deployments.
+  <elo-button slot="footer" onclick="this.closest('elo-dialog').close()">Cancel</elo-button>
+  <elo-button slot="footer" variant="danger">Delete project</elo-button>
+</elo-dialog>`}
+  />
+
+  <h2>Drawer</h2>
+  <p>
+    Set <code>placement="end"</code> (or <code>start</code>) for a full-height side panel, handy for
+    detail views in dashboards.
+  </p>
+  <Example
+    code={`<elo-button onclick="this.nextElementSibling.show()">Open details</elo-button>
+<elo-dialog label="Order #1042" placement="end">
+  <p>Placed on March 3 by Ada Lovelace.</p>
+  <elo-button slot="footer" variant="primary" onclick="this.closest('elo-dialog').close()">Done</elo-button>
+</elo-dialog>`}
+  />
+
+  <h2>Preventing close</h2>
+  <p>
+    Escape, the backdrop, and the close button fire a cancelable <code>elo-request-close</code>{' '}
+    event with <code>detail.source</code>. Call <code>preventDefault()</code> to keep the dialog
+    open, for example when a form has unsaved changes. Set <code>no-light-dismiss</code> to ignore
+    backdrop clicks.
+  </p>
+
+  <h2>Keyboard</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Tab</kbd>
+          </td>
+          <td>Moves between focusable elements inside the dialog.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Escape</kbd>
+          </td>
+          <td>Requests to close the dialog.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-dialog" />
+</Docs>

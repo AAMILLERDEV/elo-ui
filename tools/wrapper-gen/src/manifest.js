@@ -1,5 +1,19 @@
 const camelCase = (name) => name.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
 
+// DOM globals that event types may mention; anything else is imported from the component module.
+const GLOBAL_TYPES = new Set([
+  'Event',
+  'CustomEvent',
+  'MouseEvent',
+  'KeyboardEvent',
+  'FocusEvent',
+  'InputEvent',
+  'PointerEvent',
+  'ToggleEvent',
+  'HTMLElement',
+  'Element',
+]);
+
 // One entry per component at src/<name>/<name>.ts, exported as "./<name>".
 export function readElements(manifest) {
   const elements = [];
@@ -33,6 +47,10 @@ export function readElements(manifest) {
           description: e.description,
         }));
 
+      const typeImports = [
+        ...new Set(events.flatMap((e) => e.type.match(/\b[A-Z]\w*\b/g) ?? [])),
+      ].filter((name) => !GLOBAL_TYPES.has(name));
+
       elements.push({
         tagName: decl.tagName,
         className: decl.name,
@@ -41,6 +59,7 @@ export function readElements(manifest) {
         summary: decl.summary ?? decl.description?.split('\n')[0],
         props,
         events,
+        typeImports,
       });
     }
   }

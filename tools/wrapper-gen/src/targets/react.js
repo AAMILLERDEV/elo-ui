@@ -13,7 +13,12 @@ export function generateReact(elements) {
 import * as React from 'react';
 import { createComponent${events ? ', type EventName' : ''} } from '@lit/react';
 import { ${el.className} as ${el.className}Element } from '${el.importPath}';
-
+${
+  el.typeImports.length
+    ? `import type { ${el.typeImports.join(', ')} } from '${el.importPath}';
+`
+    : ''
+}
 ${el.summary ? `/** ${el.summary} */\n` : ''}export const ${el.className} = createComponent({
   tagName: '${el.tagName}',
   elementClass: ${el.className}Element,

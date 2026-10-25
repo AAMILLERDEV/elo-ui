@@ -1,0 +1,68 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Tooltip"
+  description="An accessible tooltip web component that shows on hover and focus and is announced as a description."
+>
+  <h1>Tooltip</h1>
+  <p class="lede">
+    A short text hint for an element. It shows on hover and keyboard focus, stays open while the
+    pointer is over it, and Escape dismisses it. Its text is announced as the trigger's description,
+    so screen reader users get it too.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<elo-tooltip content="Copy link to clipboard">
+  <elo-button label="Copy link"><svg slot="start" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 11V4a1 1 0 0 1 1-1h7"/></svg></elo-button>
+</elo-tooltip>
+<elo-tooltip content="Visible to everyone in the workspace" placement="bottom">
+  <elo-button>Public</elo-button>
+</elo-tooltip>`}
+  />
+
+  <h2>Guidelines</h2>
+  <ul>
+    <li>Keep tooltips short and never put essential information only in a tooltip.</li>
+    <li>
+      The trigger must be focusable. Icon-only buttons still need their own <code>label</code>.
+    </li>
+    <li>
+      Don't put links or buttons in a tooltip; use a <a href="/components/popover">popover</a>{' '}
+      instead.
+    </li>
+  </ul>
+
+  <h2>Keyboard</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Tab</kbd>
+          </td>
+          <td>Focusing the trigger shows the tooltip.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Escape</kbd>
+          </td>
+          <td>Hides the tooltip without moving focus.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-tooltip" />
+</Docs>

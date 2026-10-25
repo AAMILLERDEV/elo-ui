@@ -3,7 +3,10 @@ import { formKind } from '../manifest.js';
 // Vue renders custom elements natively, so it only needs template types.
 export function generateVue(elements) {
   const imports = elements
-    .map((el) => `import type { ${el.className} } from '${el.importPath}';`)
+    .map(
+      (el) =>
+        `import type { ${[el.className, ...el.typeImports].join(', ')} } from '${el.importPath}';`,
+    )
     .join('\n');
 
   const entries = elements

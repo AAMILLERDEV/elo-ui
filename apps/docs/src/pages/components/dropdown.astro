@@ -1,0 +1,102 @@
+---
+import { Code } from 'astro:components';
+import { codeThemes } from '../../code-themes';
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Dropdown menu"
+  description="An accessible dropdown menu web component following the WAI-ARIA menu button pattern."
+>
+  <h1>Dropdown menu</h1>
+  <p class="lede">
+    A menu of actions opened from a button, following the WAI-ARIA menu button pattern: arrow keys,
+    type-ahead, disabled items, and an <code>elo-select</code> event when the user picks an item.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<elo-dropdown>
+  <elo-button slot="trigger">Actions</elo-button>
+  <elo-menu-item value="edit">Edit</elo-menu-item>
+  <elo-menu-item value="duplicate">Duplicate <span slot="end">Ctrl+D</span></elo-menu-item>
+  <elo-menu-item value="archive" disabled>Archive</elo-menu-item>
+  <elo-menu-separator></elo-menu-separator>
+  <elo-menu-item value="delete" variant="danger">Delete</elo-menu-item>
+</elo-dropdown>`}
+  />
+
+  <h2>Handling selection</h2>
+  <p>
+    Listen for <code>elo-select</code>; <code>detail.value</code> is the item's <code>value</code>.
+    Cancel the event to keep the menu open.
+  </p>
+  <Code
+    code={`dropdown.addEventListener('elo-select', (event) => {
+  if (event.detail.value === 'delete') confirmDelete();
+});`}
+    lang="js"
+    themes={codeThemes}
+  />
+
+  <h2>Keyboard</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Enter / Space / Arrow Down</kbd>
+          </td>
+          <td>On the trigger, opens the menu on the first item.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Arrow Up</kbd>
+          </td>
+          <td>On the trigger, opens the menu on the last item.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Arrow Up / Down</kbd>
+          </td>
+          <td>Moves between items, skipping disabled ones; wraps around.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Home / End</kbd>
+          </td>
+          <td>Moves to the first or last item.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Letters</kbd>
+          </td>
+          <td>Moves to the next item starting with the typed text.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Enter / Space</kbd>
+          </td>
+          <td>Chooses the item and closes the menu.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Escape</kbd>
+          </td>
+          <td>Closes the menu and returns focus to the trigger.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-dropdown" />
+</Docs>

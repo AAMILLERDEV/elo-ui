@@ -36,9 +36,29 @@
       "types": "./dist/checkbox/checkbox.d.ts",
       "default": "./dist/checkbox/checkbox.js"
     },
+    "./dialog": {
+      "types": "./dist/dialog/dialog.d.ts",
+      "default": "./dist/dialog/dialog.js"
+    },
+    "./dropdown": {
+      "types": "./dist/dropdown/dropdown.d.ts",
+      "default": "./dist/dropdown/dropdown.js"
+    },
     "./input": {
       "types": "./dist/input/input.d.ts",
       "default": "./dist/input/input.js"
+    },
+    "./menu-item": {
+      "types": "./dist/menu-item/menu-item.d.ts",
+      "default": "./dist/menu-item/menu-item.js"
+    },
+    "./menu-separator": {
+      "types": "./dist/menu-separator/menu-separator.d.ts",
+      "default": "./dist/menu-separator/menu-separator.js"
+    },
+    "./popover": {
+      "types": "./dist/popover/popover.d.ts",
+      "default": "./dist/popover/popover.js"
     },
     "./radio": {
       "types": "./dist/radio/radio.d.ts",
@@ -60,6 +80,10 @@
       "types": "./dist/textarea/textarea.d.ts",
       "default": "./dist/textarea/textarea.js"
     },
+    "./tooltip": {
+      "types": "./dist/tooltip/tooltip.d.ts",
+      "default": "./dist/tooltip/tooltip.js"
+    },
     "./custom-elements.json": "./custom-elements.json"
   },
   "customElements": "custom-elements.json",
@@ -76,6 +100,7 @@
   },
   "dependencies": {
     "@elo-ui/core": "workspace:*",
+    "@floating-ui/dom": "catalog:",
     "lit": "catalog:"
   },
   "devDependencies": {

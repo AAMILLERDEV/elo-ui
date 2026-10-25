@@ -1,0 +1,73 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Popover"
+  description="An accessible popover web component: a non-modal panel anchored to a trigger, with smart positioning."
+>
+  <h1>Popover</h1>
+  <p class="lede">
+    A non-modal panel anchored to a trigger, for filters, quick edits, and details. It flips and
+    shifts to stay in view, closes on outside click, Escape, or when focus leaves, and returns focus
+    to the trigger.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<elo-popover label="Filters">
+  <elo-button slot="trigger">Filters</elo-button>
+  <elo-checkbox label="Only active projects"></elo-checkbox>
+  <elo-checkbox label="Only projects I own"></elo-checkbox>
+</elo-popover>`}
+  />
+
+  <h2>Placement</h2>
+  <p>
+    Set <code>placement</code> to any side and alignment, such as <code>top</code>,{' '}
+    <code>right-start</code>, or <code>bottom-end</code>.
+  </p>
+  <Example
+    code={`<elo-popover label="Share" placement="top">
+  <elo-button slot="trigger">Share</elo-button>
+  <elo-input label="Link" value="https://elo-ui.dev/p/1042" readonly></elo-input>
+</elo-popover>`}
+  />
+
+  <h2>Keyboard</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Enter / Space</kbd>
+          </td>
+          <td>On the trigger, opens the popover and moves focus inside.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Escape</kbd>
+          </td>
+          <td>Closes the popover and returns focus to the trigger.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Tab</kbd>
+          </td>
+          <td>Moves through the content; leaving it closes the popover.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-popover" />
+</Docs>

@@ -20,6 +20,7 @@
     "vitest": "catalog:"
   },
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "build": "node --check src/vite-ts-decorators.js"
   }
 }

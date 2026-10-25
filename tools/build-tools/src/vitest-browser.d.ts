@@ -4,6 +4,8 @@ import type { ViteUserConfig } from 'vitest/config';
 export function browserTest(options: {
   port: number;
   include: string[];
-  /** Package Lit is resolved through, for packages that don't depend on Lit directly. */
-  litFrom?: string;
+  /** Package that component dependencies resolve through, for wrapper packages. */
+  depsFrom?: string;
+  /** Pre-bundle component dependencies. Defaults to true; core has none. */
+  prebundle?: boolean;
 }): Pick<ViteUserConfig, 'optimizeDeps' | 'test'>;

@@ -12,7 +12,7 @@ export function generateAngular(elements) {
     const coreImports = [
       'Directive',
       'ElementRef',
-      'Input',
+      ...(el.props.length > 0 ? ['Input'] : []),
       'inject',
       ...(needsBoolean ? ['booleanAttribute'] : []),
       ...(events.length > 0 ? ['EventEmitter', 'Output'] : []),
@@ -41,8 +41,8 @@ export function generateAngular(elements) {
         return `${doc}  @Output() readonly ${e.propName} = new EventEmitter<${e.type}>();
 
   @HostListener('${e.name}', ['$event'])
-  protected ${handler}(event: ${e.type}): void {
-    this.${e.propName}.emit(event);
+  protected ${handler}(event: Event): void {
+    this.${e.propName}.emit(event as ${e.type});
   }`;
       })
       .join('\n\n');
@@ -51,7 +51,12 @@ export function generateAngular(elements) {
 
     files[`${el.fileName}.ts`] = `import { ${coreImports.join(', ')} } from '@angular/core';
 ${kind ? "import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';\n" : ''}import { ${el.className} as ${el.className}Element } from '${el.importPath}';
-
+${
+  el.typeImports.length
+    ? `import type { ${el.typeImports.join(', ')} } from '${el.importPath}';
+`
+    : ''
+}
 ${el.summary ? `/** ${el.summary} */\n` : ''}@Directive({
   selector: '${el.tagName}',
   standalone: true,${

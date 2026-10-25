@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { userEvent } from 'vitest/browser';
+import { page, userEvent } from 'vitest/browser';
 import { expectNoA11yViolations } from '../../test/a11y.js';
 import { fixture } from '../../test/fixture.js';
 import { EloButton } from './button.js';
@@ -181,6 +181,30 @@ describe('elo-button', () => {
       );
       expect(warn).toHaveBeenCalledOnce();
       warn.mockRestore();
+    });
+  });
+
+  describe('popup and description state', () => {
+    it('describes the button without changing its name', async () => {
+      const el = await fixture<EloButton>(
+        '<elo-button description="Copies the link">Copy</elo-button>',
+      );
+      const button = page.getByRole('button', { name: 'Copy' });
+      await expect.element(button).toHaveAccessibleName('Copy');
+      await expect.element(button).toHaveAccessibleDescription('Copies the link');
+      expect(el).toBeTruthy();
+    });
+
+    it('exposes expanded and haspopup on the inner control', async () => {
+      const el = await fixture<EloButton>('<elo-button>Actions</elo-button>');
+      el.expanded = false;
+      el.haspopup = 'menu';
+      await el.updateComplete;
+      expect(control(el).getAttribute('aria-expanded')).toBe('false');
+      expect(control(el).getAttribute('aria-haspopup')).toBe('menu');
+      el.expanded = true;
+      await el.updateComplete;
+      expect(control(el).getAttribute('aria-expanded')).toBe('true');
     });
   });
 

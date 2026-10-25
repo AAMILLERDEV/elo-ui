@@ -5,5 +5,8 @@
   "type": "module",
   "bin": {
     "elo-wrapper-gen": "./src/cli.js"
+  },
+  "scripts": {
+    "build": "node --check src/cli.js"
   }
 }

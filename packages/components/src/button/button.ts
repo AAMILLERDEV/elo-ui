@@ -2,7 +2,7 @@ import { LitElement, html, nothing, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { defineElement, focusRingStyles, hostStyles } from '@elo-ui/core';
+import { defineElement, focusRingStyles, hostStyles, visuallyHiddenStyles } from '@elo-ui/core';
 import { buttonStyles } from './button.styles.js';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
@@ -25,7 +25,7 @@ export type ButtonType = 'button' | 'submit' | 'reset';
  * @csspart spinner - The loading spinner.
  */
 export class EloButton extends LitElement {
-  static override styles = [hostStyles, focusRingStyles, buttonStyles];
+  static override styles = [hostStyles, focusRingStyles, visuallyHiddenStyles, buttonStyles];
   static override shadowRootOptions: ShadowRootInit = {
     ...LitElement.shadowRootOptions,
     delegatesFocus: true,
@@ -70,6 +70,15 @@ export class EloButton extends LitElement {
 
   /** Accessible name. Required for icon-only buttons with no visible text. */
   @property() accessor label: string | undefined;
+
+  /** Extra context announced after the name, such as a tooltip's text. */
+  @property() accessor description: string | undefined;
+
+  /** Whether the popup this button controls is open. Set by popovers and menus. */
+  @property({ type: Boolean, attribute: false }) accessor expanded: boolean | undefined;
+
+  /** The kind of popup this button opens. Set by popovers and menus. */
+  @property({ attribute: false }) accessor haspopup: 'menu' | 'dialog' | 'true' | undefined;
 
   @state() private accessor formDisabled = false;
   @state() private accessor hasStart = false;
@@ -185,6 +194,13 @@ export class EloButton extends LitElement {
     `;
   }
 
+  // Outside the control, so it describes the button instead of adding to its name.
+  #renderDescription(): TemplateResult | typeof nothing {
+    return this.description
+      ? html`<span id="description" class="visually-hidden">${this.description}</span>`
+      : nothing;
+  }
+
   override render(): TemplateResult {
     const disabled = this.#isDisabled;
     const classes = classMap({
@@ -199,31 +215,37 @@ export class EloButton extends LitElement {
       const rel = this.rel ?? (this.target === '_blank' ? 'noopener noreferrer' : undefined);
       // A disabled link has no href, so it is not focusable or navigable.
       return html`<a
-        part="base"
-        class=${classes}
-        href=${ifDefined(disabled ? undefined : this.href)}
-        target=${ifDefined(this.target)}
-        rel=${ifDefined(rel)}
-        download=${ifDefined(this.download)}
-        role=${ifDefined(disabled ? 'link' : undefined)}
-        aria-disabled=${ifDefined(disabled || this.loading ? 'true' : undefined)}
-        aria-label=${ifDefined(this.label)}
-        @click=${this.#handleClick}
-        >${this.#renderContent()}</a
-      >`;
+          part="base"
+          class=${classes}
+          href=${ifDefined(disabled ? undefined : this.href)}
+          target=${ifDefined(this.target)}
+          rel=${ifDefined(rel)}
+          download=${ifDefined(this.download)}
+          role=${ifDefined(disabled ? 'link' : undefined)}
+          aria-disabled=${ifDefined(disabled || this.loading ? 'true' : undefined)}
+          aria-label=${ifDefined(this.label)}
+          aria-describedby=${ifDefined(this.description ? 'description' : undefined)}
+          aria-expanded=${ifDefined(this.expanded === undefined ? undefined : String(this.expanded))}
+          aria-haspopup=${ifDefined(this.haspopup)}
+          @click=${this.#handleClick}
+          >${this.#renderContent()}</a
+        >${this.#renderDescription()}`;
     }
 
     return html`<button
-      part="base"
-      class=${classes}
-      type="button"
-      ?disabled=${disabled}
-      aria-disabled=${ifDefined(this.loading ? 'true' : undefined)}
-      aria-label=${ifDefined(this.label)}
-      @click=${this.#handleClick}
-    >
-      ${this.#renderContent()}
-    </button>`;
+        part="base"
+        class=${classes}
+        type="button"
+        ?disabled=${disabled}
+        aria-disabled=${ifDefined(this.loading ? 'true' : undefined)}
+        aria-label=${ifDefined(this.label)}
+        aria-describedby=${ifDefined(this.description ? 'description' : undefined)}
+        aria-expanded=${ifDefined(this.expanded === undefined ? undefined : String(this.expanded))}
+        aria-haspopup=${ifDefined(this.haspopup)}
+        @click=${this.#handleClick}
+      >
+        ${this.#renderContent()}</button
+      >${this.#renderDescription()}`;
   }
 }
 
