@@ -7,7 +7,7 @@ afterEach(() => {
   fixtures.splice(0).forEach((el) => el.remove());
 });
 
-/** Renders HTML into a fresh container, waits for custom elements to update, and returns the first child. */
+/** Renders markup, waits for elements to update, and returns the first child. */
 export async function fixture<T extends Element>(markup: string): Promise<T> {
   const container = document.createElement('div');
   container.innerHTML = markup;

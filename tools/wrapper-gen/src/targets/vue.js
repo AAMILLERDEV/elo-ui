@@ -1,9 +1,4 @@
-/**
- * Vue renders custom elements natively and sets known properties as DOM properties,
- * so Vue only needs type declarations for template type-checking.
- *
- * @param {import('../manifest.js').ElementInfo[]} elements
- */
+// Vue renders custom elements natively, so it only needs template types.
 export function generateVue(elements) {
   const imports = elements
     .map((el) => `import type { ${el.className} } from '${el.importPath}';`)

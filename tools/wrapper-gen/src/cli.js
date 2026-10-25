@@ -1,10 +1,5 @@
 #!/usr/bin/env node
-/**
- * Generates framework wrappers from @elo-ui/components' Custom Elements Manifest.
- *
- * Usage (from a wrapper package directory): elo-wrapper-gen <react|vue|angular>
- * Writes to ./src/generated/. Output is not committed; it's regenerated on build.
- */
+// Usage, from a wrapper package: elo-wrapper-gen <react|vue|angular> (writes src/generated/).
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';

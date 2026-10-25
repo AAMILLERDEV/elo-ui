@@ -1,33 +1,6 @@
-/**
- * @typedef {object} ElementProp
- * @property {string} name
- * @property {boolean} isBoolean
- * @property {string} [description]
- *
- * @typedef {object} ElementEvent
- * @property {string} name        DOM event name, e.g. "elo-change"
- * @property {string} propName    camelCase name, e.g. "eloChange"
- * @property {string} type        event type text, e.g. "CustomEvent<{ value: string }>"
- * @property {string} [description]
- *
- * @typedef {object} ElementInfo
- * @property {string} tagName       e.g. "elo-button"
- * @property {string} className     e.g. "EloButton"
- * @property {string} importPath    e.g. "@elo-ui/components/button"
- * @property {string} fileName      e.g. "button"
- * @property {string} [summary]
- * @property {ElementProp[]} props
- * @property {ElementEvent[]} events
- */
-
 const camelCase = (name) => name.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
 
-/**
- * Extracts the elements the wrappers need from a Custom Elements Manifest.
- * Convention: each component lives at src/<name>/<name>.ts and is exported as "./<name>".
- *
- * @returns {ElementInfo[]}
- */
+// One entry per component at src/<name>/<name>.ts, exported as "./<name>".
 export function readElements(manifest) {
   const elements = [];
 

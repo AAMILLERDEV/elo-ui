@@ -18,12 +18,7 @@ export interface RovingTabindexOptions {
 const defaultIsDisabled = (item: HTMLElement) =>
   item.hasAttribute('disabled') || item.getAttribute('aria-disabled') === 'true';
 
-/**
- * Roving tabindex (WAI-ARIA APG): the group is one Tab stop, and arrow keys, Home, and End move
- * focus between items. Exactly one item has `tabindex="0"`. Horizontal arrows follow RTL.
- *
- * Use for tabs, toolbars, radio groups, menus, and listboxes.
- */
+/** APG roving tabindex: one Tab stop; arrows, Home, and End move between items (RTL-aware). */
 export class RovingTabindexController implements ReactiveController {
   readonly #host: ReactiveControllerHost & HTMLElement;
   readonly #options: RovingTabindexOptions;
@@ -54,10 +49,7 @@ export class RovingTabindexController implements ReactiveController {
     this.sync();
   }
 
-  /**
-   * Re-applies tabindex to the current items. Runs after every host update; call it yourself
-   * when items change outside a render (for example, slotted children).
-   */
+  /** Re-applies tabindex; runs after each update, call it when items change outside a render. */
   sync(): void {
     const items = this.#options.items();
     const isDisabled = this.#options.isDisabled ?? defaultIsDisabled;

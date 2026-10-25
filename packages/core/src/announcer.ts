@@ -1,14 +1,11 @@
 export type Politeness = 'polite' | 'assertive';
 
 export interface AnnounceOptions {
-  /** `polite` waits for the screen reader to finish; `assertive` interrupts. Defaults to `polite`. */
+  /** `polite` (default) waits for the screen reader; `assertive` interrupts. */
   politeness?: Politeness;
 }
 
-/**
- * Delay between clearing and setting a region's text. Screen readers ignore a change to the same
- * text, and some miss text set in the same frame a region is created.
- */
+// Clear-then-set delay, so screen readers re-read repeated messages.
 const ANNOUNCE_DELAY_MS = 100;
 
 const HIDDEN_STYLE =
@@ -32,16 +29,7 @@ function getRegion(politeness: Politeness): HTMLElement {
   return region;
 }
 
-/**
- * Announces `message` to screen readers through a shared, visually hidden live region.
- * Repeating the same message announces it again. A newer message on the same politeness
- * replaces one that hasn't been announced yet.
- *
- * Resolves once the message is in the live region.
- *
- * Note: content outside an open modal `<dialog>` is inert, so announcements made while one is
- * open may not be read. Components that open modals should announce from inside them.
- */
+/** Announces via a shared live region (unread while a modal is open); resolves once set. */
 export function announce(
   message: string,
   { politeness = 'polite' }: AnnounceOptions = {},

@@ -1,9 +1,4 @@
-/**
- * Standalone directives that match the element's own tag, forward typed inputs to the
- * element's properties, and re-emit custom events as Angular outputs.
- *
- * @param {import('../manifest.js').ElementInfo[]} elements
- */
+// Standalone directives: typed inputs set element properties; custom events become outputs.
 export function generateAngular(elements) {
   const files = {};
 

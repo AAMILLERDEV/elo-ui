@@ -13,13 +13,7 @@ export interface FocusTrapOptions {
 /** Active traps, innermost last. Only the innermost trap handles focus. */
 const trapStack: FocusTrapController[] = [];
 
-/**
- * Keeps keyboard focus inside a container while active: Tab and Shift+Tab wrap around, and focus
- * that escapes (by click or assistive technology) is pulled back. Nested traps stack.
- *
- * Use for non-modal overlays such as drawers and popovers. A modal `<dialog>` opened with
- * `showModal()` already traps focus natively.
- */
+/** Keeps focus inside a non-modal overlay; `showModal()` dialogs already do this natively. */
 export class FocusTrapController implements ReactiveController {
   readonly #options: FocusTrapOptions;
   #previousFocus: HTMLElement | null = null;

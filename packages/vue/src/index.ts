@@ -1,17 +1,10 @@
-// GlobalComponents augmentation has no runtime module, so it must be a reference, not an import.
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference -- type-only augmentation
 /// <reference path="./generated/components.d.ts" />
 import { eloTags } from './generated/tags.js';
 
 export { eloTags };
 
-/**
- * Tells Vue's template compiler that `elo-*` tags are custom elements.
- *
- * @example
- * // vite.config.ts
- * vue({ template: { compilerOptions: { isCustomElement: isEloElement } } })
- */
+/** Tells Vue's template compiler that `elo-*` tags are custom elements. */
 export function isEloElement(tag: string): boolean {
   return tag.startsWith('elo-');
 }

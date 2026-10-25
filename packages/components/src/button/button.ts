@@ -12,10 +12,6 @@ export type ButtonType = 'button' | 'submit' | 'reset';
 /**
  * A button for actions, form submission, or navigation.
  *
- * Renders a native `<button>`, or a native `<a>` when `href` is set. Participates in
- * forms like a native button: `type="submit"` submits (with `name`/`value`) and runs
- * validation, `type="reset"` resets, and a disabled `<fieldset>` disables it.
- *
  * @tag elo-button
  *
  * @slot - The button's label.

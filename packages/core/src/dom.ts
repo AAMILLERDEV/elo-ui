@@ -1,7 +1,4 @@
-/**
- * Composed-tree DOM helpers. Shadow DOM breaks `contains()`, `activeElement`, and
- * `querySelectorAll()`; these follow the flat tree (shadow roots and slot assignments) instead.
- */
+// DOM helpers that follow the flat tree (shadow roots and slots).
 
 const FOCUSABLE = [
   'a[href]',
@@ -54,7 +51,7 @@ function isInert(el: Element): boolean {
 /** Whether `el` is in the sequential (Tab) focus order. */
 export function isTabbable(el: Element): el is HTMLElement {
   if (!(el instanceof HTMLElement) || !el.matches(FOCUSABLE) || el.tabIndex < 0) return false;
-  // :disabled also covers controls inside a disabled <fieldset> and form-associated custom elements.
+  // :disabled also covers disabled fieldsets and form-associated elements.
   if (el.matches(':disabled')) return false;
   if (!el.checkVisibility({ visibilityProperty: true, checkVisibilityCSS: true })) return false;
   return !isInert(el);
@@ -68,10 +65,7 @@ function composedChildren(node: Node): Element[] {
     : [];
 }
 
-/**
- * Tabbable elements inside `root`, in flat-tree order, including those in open shadow roots and
- * slotted content. Positive `tabindex` values are treated like `0` (don't use them).
- */
+/** Tabbable elements in `root` in flat-tree order, including shadow and slotted content. */
 export function getTabbableElements(root: Element | ShadowRoot | Document): HTMLElement[] {
   const result: HTMLElement[] = [];
   const walk = (node: Node) => {

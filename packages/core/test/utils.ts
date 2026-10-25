@@ -6,7 +6,7 @@ afterEach(() => {
   containers.splice(0).forEach((el) => el.remove());
 });
 
-/** Renders HTML into a fresh container, waits for Lit elements to update, and returns the container. */
+/** Renders markup, waits for elements to update, and returns the container. */
 export async function mount(markup: string): Promise<HTMLElement> {
   const container = document.createElement('div');
   container.innerHTML = markup;

@@ -19,13 +19,7 @@ const defaultLabel = (item: HTMLElement) =>
 const defaultIsDisabled = (item: HTMLElement) =>
   item.hasAttribute('disabled') || item.getAttribute('aria-disabled') === 'true';
 
-/**
- * Type-ahead (WAI-ARIA APG): typing characters moves to the next item whose label starts with
- * them. Typing the same character repeatedly cycles through items starting with it.
- *
- * The host calls `handleKeyDown()` from its own keydown handler, so it decides precedence over
- * other keys.
- */
+/** APG type-ahead: typed characters jump to a matching item. */
 export class TypeaheadController implements ReactiveController {
   readonly #options: TypeaheadOptions;
   #buffer = '';
@@ -46,10 +40,7 @@ export class TypeaheadController implements ReactiveController {
     this.#buffer = '';
   }
 
-  /**
-   * Handles a keydown. Returns `true` (and prevents the default action) when the key matched
-   * an item. `current` is the item to search after, usually the focused one.
-   */
+  /** Returns `true` and prevents default when the key matched an item after `current`. */
   handleKeyDown(event: KeyboardEvent, current: HTMLElement | null): boolean {
     if (event.ctrlKey || event.metaKey || event.altKey) return false;
     if ([...event.key].length !== 1) return false;

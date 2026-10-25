@@ -1,4 +1,3 @@
-/** @param {import('../manifest.js').ElementInfo[]} elements */
 export function generateReact(elements) {
   const files = {};
 
