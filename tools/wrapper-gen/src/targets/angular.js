@@ -4,7 +4,9 @@ export function generateAngular(elements) {
 
   for (const el of elements) {
     const needsBoolean = el.props.some((p) => p.isBoolean);
-    const hasEvents = el.events.length > 0;
+    // Native events (input, change) already bind with (event); a same-named output would fire twice.
+    const events = el.events.filter((e) => e.name.includes('-'));
+    const hasEvents = events.length > 0;
     const coreImports = [
       'Directive',
       'ElementRef',
@@ -28,7 +30,7 @@ export function generateAngular(elements) {
       })
       .join('\n\n');
 
-    const outputs = el.events
+    const outputs = events
       .map((e) => {
         const doc = e.description ? `  /** ${e.description} */\n` : '';
         const handler = `on${e.propName[0].toUpperCase()}${e.propName.slice(1)}`;

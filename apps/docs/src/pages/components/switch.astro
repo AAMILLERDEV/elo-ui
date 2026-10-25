@@ -1,0 +1,47 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Switch"
+  description="An accessible on/off switch web component, announced as a switch to screen readers."
+>
+  <h1>Switch</h1>
+  <p class="lede">
+    An on/off control for settings that take effect immediately. Screen readers announce it as a
+    switch. Use a checkbox instead when the choice only applies after a form is submitted.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    stack
+    code={`<elo-switch label="Email notifications" hint="Daily summary of activity." checked></elo-switch>
+<elo-switch label="Two-factor authentication"></elo-switch>
+<elo-switch label="Beta features" disabled></elo-switch>`}
+  />
+
+  <h2>Keyboard</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Space</kbd>
+          </td>
+          <td>Toggles the switch.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-switch" />
+</Docs>

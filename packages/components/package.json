@@ -32,6 +32,34 @@
       "types": "./dist/button/button.d.ts",
       "default": "./dist/button/button.js"
     },
+    "./checkbox": {
+      "types": "./dist/checkbox/checkbox.d.ts",
+      "default": "./dist/checkbox/checkbox.js"
+    },
+    "./input": {
+      "types": "./dist/input/input.d.ts",
+      "default": "./dist/input/input.js"
+    },
+    "./radio": {
+      "types": "./dist/radio/radio.d.ts",
+      "default": "./dist/radio/radio.js"
+    },
+    "./radio-group": {
+      "types": "./dist/radio-group/radio-group.d.ts",
+      "default": "./dist/radio-group/radio-group.js"
+    },
+    "./select": {
+      "types": "./dist/select/select.d.ts",
+      "default": "./dist/select/select.js"
+    },
+    "./switch": {
+      "types": "./dist/switch/switch.d.ts",
+      "default": "./dist/switch/switch.js"
+    },
+    "./textarea": {
+      "types": "./dist/textarea/textarea.d.ts",
+      "default": "./dist/textarea/textarea.js"
+    },
     "./custom-elements.json": "./custom-elements.json"
   },
   "customElements": "custom-elements.json",

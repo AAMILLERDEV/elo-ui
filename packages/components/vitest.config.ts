@@ -4,5 +4,5 @@ import { browserTest } from '@elo-ui/build-tools/vitest';
 
 export default defineConfig({
   plugins: [tsDecorators()],
-  test: browserTest({ port: 63402, include: ['src/**/*.test.ts'] }),
+  ...browserTest({ port: 63402, include: ['src/**/*.test.ts'] }),
 });

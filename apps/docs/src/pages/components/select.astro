@@ -1,0 +1,54 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Select"
+  description="An accessible select web component built on the native select, with a label, hint, placeholder, and validation."
+>
+  <h1>Select</h1>
+  <p class="lede">
+    A dropdown built on the native <code>&lt;select&gt;</code>: keyboard support, type-to-search,
+    mobile pickers, and screen reader announcements all come from the platform. Put{' '}
+    <code>&lt;option&gt;</code> and <code>&lt;optgroup&gt;</code> elements inside.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    stack
+    code={`<elo-select label="Role" hint="Controls what this person can change.">
+  <option value="admin">Admin</option>
+  <option value="editor" selected>Editor</option>
+  <option value="viewer">Viewer</option>
+</elo-select>`}
+  />
+
+  <h2>Placeholder and required</h2>
+  <p>
+    A placeholder adds an empty first option, so <code>required</code> blocks submission until the
+    user picks.
+  </p>
+  <Example
+    stack
+    code={`<elo-select label="Region" placeholder="Choose a region" required>
+  <optgroup label="Americas">
+    <option value="us-east">US East</option>
+    <option value="us-west">US West</option>
+  </optgroup>
+  <optgroup label="Europe">
+    <option value="eu-west">EU West</option>
+  </optgroup>
+</elo-select>`}
+  />
+
+  <h2>Keyboard</h2>
+  <p>
+    Arrow keys, typing to jump to an option, and opening the list all follow the native select on
+    each platform.
+  </p>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-select" />
+</Docs>

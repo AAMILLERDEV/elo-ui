@@ -1,0 +1,70 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Radio group"
+  description="An accessible radio group web component with arrow-key navigation, a label, hint, and validation."
+>
+  <h1>Radio group</h1>
+  <p class="lede">
+    A set of options where exactly one can be selected. The group is a single Tab stop; arrow keys
+    move between options and select them, following the WAI-ARIA radio group pattern.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    stack
+    code={`<elo-radio-group label="Billing" hint="Switch any time." value="yearly">
+  <elo-radio value="monthly">Monthly</elo-radio>
+  <elo-radio value="yearly">Yearly (2 months free)</elo-radio>
+  <elo-radio value="lifetime" disabled>Lifetime</elo-radio>
+</elo-radio-group>`}
+  />
+
+  <h2>Horizontal</h2>
+  <Example
+    stack
+    code={`<elo-radio-group label="Density" orientation="horizontal" value="comfortable">
+  <elo-radio value="comfortable">Comfortable</elo-radio>
+  <elo-radio value="compact">Compact</elo-radio>
+</elo-radio-group>`}
+  />
+
+  <h2>Keyboard</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Tab</kbd>
+          </td>
+          <td>Moves into the group, to the selected option (or the first one).</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Arrow keys</kbd>
+          </td>
+          <td>Move to and select the next or previous option, skipping disabled ones.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Space</kbd>
+          </td>
+          <td>Selects the focused option.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-radio-group" />
+</Docs>

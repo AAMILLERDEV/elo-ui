@@ -10,8 +10,25 @@ const { title, description } = Astro.props;
 const path = Astro.url.pathname.replace(/(\.html|\/)$/, '').replace(/\/index$/, '') || '/';
 
 const nav = [
-  { heading: 'Getting started', links: [{ href: '/', label: 'Introduction' }] },
-  { heading: 'Components', links: [{ href: '/components/button', label: 'Button' }] },
+  {
+    heading: 'Getting started',
+    links: [
+      { href: '/', label: 'Introduction' },
+      { href: '/guides/forms', label: 'Forms' },
+    ],
+  },
+  {
+    heading: 'Components',
+    links: [
+      { href: '/components/button', label: 'Button' },
+      { href: '/components/checkbox', label: 'Checkbox' },
+      { href: '/components/input', label: 'Input' },
+      { href: '/components/radio-group', label: 'Radio group' },
+      { href: '/components/select', label: 'Select' },
+      { href: '/components/switch', label: 'Switch' },
+      { href: '/components/textarea', label: 'Textarea' },
+    ],
+  },
 ];
 ---
 

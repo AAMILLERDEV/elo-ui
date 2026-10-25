@@ -115,6 +115,7 @@
   --elo-color-surface-active: var(--elo-gray-200);
   --elo-color-border: var(--elo-gray-200);
   --elo-color-border-strong: var(--elo-gray-300);
+  --elo-color-border-control: var(--elo-gray-500);
   --elo-color-fg: var(--elo-gray-900);
   --elo-color-fg-muted: var(--elo-gray-600);
 
@@ -128,6 +129,7 @@
   --elo-color-danger-hover: var(--elo-red-700);
   --elo-color-danger-active: var(--elo-red-800);
   --elo-color-danger-fg: var(--elo-white);
+  --elo-color-danger-text: var(--elo-red-700);
 
   --elo-color-focus-ring: var(--elo-indigo-600);
   --elo-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
@@ -144,6 +146,7 @@
     --elo-color-surface-active: var(--elo-gray-700);
     --elo-color-border: var(--elo-gray-800);
     --elo-color-border-strong: var(--elo-gray-700);
+    --elo-color-border-control: var(--elo-gray-500);
     --elo-color-fg: var(--elo-gray-50);
     --elo-color-fg-muted: var(--elo-gray-400);
 
@@ -157,6 +160,7 @@
     --elo-color-danger-hover: var(--elo-red-700);
     --elo-color-danger-active: var(--elo-red-800);
     --elo-color-danger-fg: var(--elo-white);
+    --elo-color-danger-text: var(--elo-red-400);
 
     --elo-color-focus-ring: var(--elo-indigo-400);
     --elo-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
@@ -173,6 +177,7 @@
   --elo-color-surface-active: var(--elo-gray-700);
   --elo-color-border: var(--elo-gray-800);
   --elo-color-border-strong: var(--elo-gray-700);
+  --elo-color-border-control: var(--elo-gray-500);
   --elo-color-fg: var(--elo-gray-50);
   --elo-color-fg-muted: var(--elo-gray-400);
 
@@ -186,6 +191,7 @@
   --elo-color-danger-hover: var(--elo-red-700);
   --elo-color-danger-active: var(--elo-red-800);
   --elo-color-danger-fg: var(--elo-white);
+  --elo-color-danger-text: var(--elo-red-400);
 
   --elo-color-focus-ring: var(--elo-indigo-400);
   --elo-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);

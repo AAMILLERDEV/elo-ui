@@ -1,0 +1,59 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Input"
+  description="An accessible text input web component with a built-in label, hint, validation, and icon slots."
+>
+  <h1>Input</h1>
+  <p class="lede">
+    A single-line text field. Renders a native <code>&lt;input&gt;</code>, so autofill, mobile
+    keyboards, and screen readers work as expected. See <a href="/guides/forms">Forms</a> for
+    validation and events.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    stack
+    code={`<elo-input label="Full name" hint="As it appears on your ID."></elo-input>`}
+  />
+
+  <h2>Types</h2>
+  <Example
+    stack
+    code={`<elo-input label="Email" type="email" autocomplete="email"></elo-input>
+<elo-input label="Password" type="password" autocomplete="current-password"></elo-input>
+<elo-input label="Quantity" type="number" min="1" max="99" value="1"></elo-input>`}
+  />
+
+  <h2>Icons and units</h2>
+  <Example
+    stack
+    code={`<elo-input label="Search" hide-label type="search" placeholder="Search projects">
+  <svg slot="start" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>
+</elo-input>
+<elo-input label="Budget" type="number" value="500"><span slot="end">USD</span></elo-input>`}
+  />
+
+  <h2>Sizes</h2>
+  <Example
+    stack
+    code={`<elo-input label="Small" size="sm"></elo-input>
+<elo-input label="Medium"></elo-input>
+<elo-input label="Large" size="lg"></elo-input>`}
+  />
+
+  <h2>States</h2>
+  <Example
+    stack
+    code={`<elo-input label="Username" value="ada" error="That username is taken."></elo-input>
+<elo-input label="API key" value="sk_live_1234" readonly></elo-input>
+<elo-input label="Workspace" value="Acme" disabled></elo-input>`}
+  />
+
+  <h2>API</h2>
+  <ApiReference tag="elo-input" />
+</Docs>

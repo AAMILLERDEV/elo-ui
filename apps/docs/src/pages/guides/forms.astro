@@ -1,0 +1,77 @@
+---
+import { Code } from 'astro:components';
+import { codeThemes } from '../../code-themes';
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+---
+
+<Docs
+  title="Forms"
+  description="How Elo UI form controls handle labels, validation, native forms, and framework bindings."
+>
+  <h1>Forms</h1>
+  <p class="lede">
+    Every Elo UI form control is form-associated: it submits with native <code>&lt;form&gt;</code>
+    elements, resets, respects disabled fieldsets, and uses the browser's constraint validation.
+  </p>
+
+  <h2>Labels, hints, and errors</h2>
+  <p>
+    Pass <code>label</code>, <code>hint</code>, and <code>error</code> as attributes. They render in
+    the same shadow root as the control, so screen readers always announce them. Use the
+    <code>label</code> and <code>hint</code> slots for rich content, and <code>hide-label</code> to
+    hide a label visually while keeping it accessible.
+  </p>
+  <Example
+    stack
+    code={`<elo-input label="Email" hint="We'll send a confirmation." type="email"></elo-input>`}
+  />
+
+  <h2>Validation</h2>
+  <p>
+    Use native attributes: <code>required</code>, <code>minlength</code>, <code>pattern</code>,
+    <code>type="email"</code>, and so on. Errors appear only after the user leaves a field or tries
+    to submit, never while they're first typing. Messages come from the browser, in the user's
+    language.
+  </p>
+  <Example
+    stack
+    code={`<form onsubmit="event.preventDefault()">
+  <elo-input label="Username" required minlength="3"></elo-input>
+  <elo-checkbox label="I accept the terms" required></elo-checkbox>
+  <elo-button type="submit" variant="primary">Create account</elo-button>
+</form>`}
+  />
+  <p>
+    For server-side errors, set the <code>error</code> attribute: it shows the message and marks the
+    field invalid without blocking submission. To block submission with your own rule, call
+    <code>setCustomValidity(message)</code>, as on native inputs.
+  </p>
+
+  <h2>Events</h2>
+  <p>
+    Controls fire native <code>input</code> and <code>change</code> events, so the value is already
+    updated when your listener runs.
+  </p>
+  <Code
+    code={`document.querySelector('elo-input').addEventListener('input', (event) => {
+  console.log(event.target.value);
+});`}
+    lang="js"
+    themes={codeThemes}
+  />
+
+  <h2>Frameworks</h2>
+  <Code
+    code={`// React
+<EloInput label="Name" value={name} onInput={(e) => setName(e.currentTarget.value)} />
+
+<!-- Vue -->
+<elo-input label="Name" :value="name" @input="name = $event.target.value" />
+
+<!-- Angular -->
+<elo-input label="Name" [value]="name()" (input)="name.set($any($event.target).value)" />`}
+    lang="tsx"
+    themes={codeThemes}
+  />
+</Docs>

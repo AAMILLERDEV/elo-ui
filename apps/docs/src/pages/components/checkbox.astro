@@ -1,0 +1,56 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Checkbox"
+  description="An accessible checkbox web component with a label, hint, indeterminate state, and validation."
+>
+  <h1>Checkbox</h1>
+  <p class="lede">
+    A checkbox built on the native checkbox input. Clicking the label toggles it, and it submits its{' '}
+    <code>value</code> only when checked.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    stack
+    code={`<elo-checkbox label="Email me about product updates" hint="About once a month."></elo-checkbox>
+<elo-checkbox label="Remember this device" checked></elo-checkbox>`}
+  />
+
+  <h2>Indeterminate</h2>
+  <p>Use for a "select all" box when only some items are selected. Toggling clears it.</p>
+  <Example stack code={`<elo-checkbox label="Select all" indeterminate></elo-checkbox>`} />
+
+  <h2>Required</h2>
+  <Example
+    stack
+    code={`<elo-checkbox label="I accept the terms of service" required></elo-checkbox>`}
+  />
+
+  <h2>Keyboard</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Space</kbd>
+          </td>
+          <td>Toggles the checkbox.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-checkbox" />
+</Docs>

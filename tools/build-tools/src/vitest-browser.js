@@ -2,8 +2,17 @@ import { playwright } from '@vitest/browser-playwright';
 
 const ALL_BROWSERS = ['chromium', 'firefox', 'webkit'];
 
+// Lit entry points the components use; add new directives here to avoid mid-run Vite reloads.
+const LIT_ENTRIES = [
+  'lit',
+  'lit/decorators.js',
+  'lit/directives/class-map.js',
+  'lit/directives/if-defined.js',
+  'lit/directives/live.js',
+];
+
 // Unique port per package (tests run in parallel); 127.0.0.1 avoids Firefox's IPv6 localhost.
-export function browserTest({ port, include }) {
+export function browserTest({ port, include, litFrom }) {
   const browsers = (process.env.ELO_BROWSERS ?? ALL_BROWSERS.join(','))
     .split(',')
     .map((browser) => browser.trim());
@@ -14,13 +23,18 @@ export function browserTest({ port, include }) {
   }
 
   return {
-    include,
-    api: { port, strictPort: true, host: '127.0.0.1' },
-    browser: {
-      enabled: true,
-      headless: true,
-      provider: playwright(),
-      instances: browsers.map((browser) => ({ browser })),
+    optimizeDeps: {
+      include: LIT_ENTRIES.map((entry) => (litFrom ? `${litFrom} > ${entry}` : entry)),
+    },
+    test: {
+      include,
+      api: { port, strictPort: true, host: '127.0.0.1' },
+      browser: {
+        enabled: true,
+        headless: true,
+        provider: playwright(),
+        instances: browsers.map((browser) => ({ browser })),
+      },
     },
   };
 }

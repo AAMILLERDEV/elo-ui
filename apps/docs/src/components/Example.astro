@@ -5,13 +5,15 @@ import { codeThemes } from '../code-themes';
 interface Props {
   /** Markup rendered as the live preview and shown as the HTML snippet. */
   code: string;
+  /** Stack items vertically, for form fields. */
+  stack?: boolean;
 }
 
-const { code } = Astro.props;
+const { code, stack = false } = Astro.props;
 ---
 
 <figure class="example">
-  <div class="preview" set:html={code} />
+  <div class:list={['preview', { stack }]} set:html={code} />
   <Code code={code.trim()} lang="html" themes={codeThemes} />
 </figure>
 
@@ -30,6 +32,26 @@ const { code } = Astro.props;
     align-items: center;
     padding: 1.5rem;
     background: var(--elo-color-surface);
+  }
+
+  .preview.stack {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .preview.stack > :global(*) {
+    max-width: 24rem;
+  }
+
+  .preview :global(form) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .preview :global(form > :not(elo-button)) {
+    align-self: stretch;
   }
 
   .example :global(pre.astro-code) {
