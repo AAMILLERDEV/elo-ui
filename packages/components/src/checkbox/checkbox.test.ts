@@ -48,6 +48,16 @@ describe('elo-checkbox', () => {
     expect(el.checked).toBe(true);
   });
 
+  it('keeps checked set before first render over the checked attribute', async () => {
+    const el = document.createElement('elo-checkbox');
+    el.setAttribute('label', 'Subscribe');
+    el.checked = true;
+    document.body.append(el);
+    await el.updateComplete;
+    expect(el.checked).toBe(true);
+    el.remove();
+  });
+
   it('shows indeterminate as partially checked and clears it on toggle', async () => {
     const el = await fixture<EloCheckbox>(
       '<elo-checkbox label="All" indeterminate></elo-checkbox>',

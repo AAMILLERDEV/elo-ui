@@ -16,6 +16,7 @@ catalog:
   '@arethetypeswrong/cli': ^0.18.5
   publint: ^0.3.25
   '@elo-ui/build-tools': workspace:*
+  '@angular/forms': ^22.2.3
 
 # Dependency install scripts. pnpm blocks these by default; decide per package.
 allowBuilds:

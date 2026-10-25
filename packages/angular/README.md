@@ -24,6 +24,15 @@ export class Save {
 
 `ELO_UI_DIRECTIVES` imports every directive at once. Boolean inputs accept bare attributes (`<elo-button disabled>`).
 
+## Forms
+
+Form controls implement `ControlValueAccessor`, so `ngModel`, `formControl`, and `formControlName` work. Add `@angular/forms` as usual.
+
+```html
+<elo-input label="Email" formControlName="email" />
+<elo-checkbox label="Subscribe" [(ngModel)]="subscribe" />
+```
+
 ## License
 
 MIT

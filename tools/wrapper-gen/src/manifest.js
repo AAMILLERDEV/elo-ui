@@ -47,3 +47,12 @@ export function readElements(manifest) {
 
   return elements.sort((a, b) => a.tagName.localeCompare(b.tagName));
 }
+
+// 'checked' for checkbox-like controls, 'value' for text-like ones, null for non-form elements.
+export function formKind(el) {
+  const props = new Set(el.props.map((p) => p.name));
+  const events = new Set(el.events.map((e) => e.name));
+  if (props.has('checked') && events.has('change')) return 'checked';
+  if (props.has('value') && events.has('input')) return 'value';
+  return null;
+}

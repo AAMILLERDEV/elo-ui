@@ -67,6 +67,18 @@ describe('elo-input', () => {
     expect(native(el).value).toBe('Draft');
   });
 
+  it('keeps a value set before first render over the value attribute', async () => {
+    const el = document.createElement('elo-input');
+    el.setAttribute('label', 'Name');
+    el.setAttribute('value', 'Default');
+    el.value = 'Set by code';
+    document.body.append(el);
+    await el.updateComplete;
+    expect(el.value).toBe('Set by code');
+    expect(native(el).value).toBe('Set by code');
+    el.remove();
+  });
+
   describe('validation', () => {
     it('mirrors native validity without showing an error before the user is done', async () => {
       const el = await fixture<EloInput>(

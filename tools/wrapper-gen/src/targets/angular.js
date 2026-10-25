@@ -1,3 +1,5 @@
+import { formKind } from '../manifest.js';
+
 // Standalone directives: typed inputs set element properties; custom events become outputs.
 export function generateAngular(elements) {
   const files = {};
@@ -6,14 +8,16 @@ export function generateAngular(elements) {
     const needsBoolean = el.props.some((p) => p.isBoolean);
     // Native events (input, change) already bind with (event); a same-named output would fire twice.
     const events = el.events.filter((e) => e.name.includes('-'));
-    const hasEvents = events.length > 0;
+    const kind = formKind(el);
     const coreImports = [
       'Directive',
       'ElementRef',
       'Input',
       'inject',
       ...(needsBoolean ? ['booleanAttribute'] : []),
-      ...(hasEvents ? ['EventEmitter', 'HostListener', 'Output'] : []),
+      ...(events.length > 0 ? ['EventEmitter', 'Output'] : []),
+      ...(events.length > 0 || kind ? ['HostListener'] : []),
+      ...(kind ? ['forwardRef'] : []),
     ].sort();
 
     const inputs = el.props
@@ -43,18 +47,27 @@ export function generateAngular(elements) {
       })
       .join('\n\n');
 
+    const valueAccessor = kind ? renderValueAccessor(el, kind) : '';
+
     files[`${el.fileName}.ts`] = `import { ${coreImports.join(', ')} } from '@angular/core';
-import { ${el.className} as ${el.className}Element } from '${el.importPath}';
+${kind ? "import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';\n" : ''}import { ${el.className} as ${el.className}Element } from '${el.importPath}';
 
 ${el.summary ? `/** ${el.summary} */\n` : ''}@Directive({
   selector: '${el.tagName}',
-  standalone: true,
+  standalone: true,${
+    kind
+      ? `
+  providers: [
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ${el.className}), multi: true },
+  ],`
+      : ''
+  }
 })
-export class ${el.className} {
+export class ${el.className}${kind ? ' implements ControlValueAccessor' : ''} {
   /** The underlying \`<${el.tagName}>\` element. */
   readonly element: ${el.className}Element = inject(ElementRef).nativeElement;
 
-${[inputs, outputs].filter(Boolean).join('\n\n')}
+${[inputs, outputs, valueAccessor].filter(Boolean).join('\n\n')}
 }
 `;
   }
@@ -70,4 +83,46 @@ export const ELO_UI_DIRECTIVES = [${elements.map((el) => el.className).join(', '
 `;
 
   return files;
+}
+
+// ControlValueAccessor, so ngModel, formControl, and formControlName work.
+function renderValueAccessor(el, kind) {
+  const type = `${el.className}Element['${kind}']`;
+  const write =
+    kind === 'checked'
+      ? 'this.element.checked = Boolean(value);'
+      : "this.element.value = value ?? '';";
+  const event = kind === 'checked' ? 'change' : 'input';
+  return `  private onChange: (value: ${type}) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  /** @internal */
+  writeValue(value: ${type} | null): void {
+    ${write}
+  }
+
+  /** @internal */
+  registerOnChange(fn: (value: ${type}) => void): void {
+    this.onChange = fn;
+  }
+
+  /** @internal */
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  /** @internal */
+  setDisabledState(disabled: boolean): void {
+    this.element.disabled = disabled;
+  }
+
+  @HostListener('${event}')
+  protected handleValueChange(): void {
+    this.onChange(this.element.${kind});
+  }
+
+  @HostListener('focusout')
+  protected handleBlur(): void {
+    this.onTouched();
+  }`;
 }

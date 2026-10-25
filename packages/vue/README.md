@@ -29,6 +29,15 @@ import '@elo-ui/components/button';
 </template>
 ```
 
+## Forms
+
+With `eloCompilerOptions`, `v-model` works on every form control. Checkboxes and switches bind `checked` (including arrays of values), like native checkboxes:
+
+```vue
+<elo-input label="Name" v-model="name" />
+<elo-checkbox label="Subscribe" v-model="subscribe" />
+```
+
 ## License
 
 MIT

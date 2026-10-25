@@ -17,7 +17,7 @@ function mount(component: Parameters<typeof createApp>[0]): HTMLElement {
   host = document.createElement('div');
   document.body.append(host);
   app = createApp(component);
-  app.config.compilerOptions.isCustomElement = eloCompilerOptions.isCustomElement;
+  Object.assign(app.config.compilerOptions, eloCompilerOptions);
   const warn = vi.spyOn(console, 'warn');
   app.mount(host);
   // Vue warns "Failed to resolve component" if isCustomElement isn't applied.

@@ -4,9 +4,6 @@ import { FormControl } from './form-control.js';
 
 /** Base for on/off controls backed by a native checkbox: checkbox and switch. */
 export abstract class CheckControl extends FormControl {
-  /** Whether the control is on. */
-  @property({ type: Boolean, attribute: false }) accessor checked = false;
-
   /** Initial state, restored on form reset. Set with the `checked` attribute. */
   @property({ type: Boolean, attribute: 'checked' }) accessor defaultChecked = false;
 
@@ -15,19 +12,37 @@ export abstract class CheckControl extends FormControl {
 
   @query('input') protected accessor input: HTMLInputElement | null = null;
 
+  #checked = false;
+  // Like native checkboxes: once set by the user or by code, the default no longer applies.
   #dirty = false;
+
+  /** Whether the control is on. */
+  @property({ type: Boolean, attribute: false })
+  set checked(checked: boolean) {
+    this.#dirty = true;
+    this.#checked = checked;
+  }
+  get checked(): boolean {
+    return this.#checked;
+  }
 
   protected get validationTarget(): HTMLInputElement | null {
     return this.input;
   }
 
+  #applyDefault(): void {
+    const old = this.#checked;
+    this.#checked = this.defaultChecked;
+    this.requestUpdate('checked', old);
+  }
+
   protected resetValue(): void {
     this.#dirty = false;
-    this.checked = this.defaultChecked;
+    this.#applyDefault();
   }
 
   protected override willUpdate(changed: PropertyValues<this>): void {
-    if (changed.has('defaultChecked') && !this.#dirty) this.checked = this.defaultChecked;
+    if (changed.has('defaultChecked') && !this.#dirty) this.#applyDefault();
     super.willUpdate(changed);
   }
 
@@ -40,13 +55,11 @@ export abstract class CheckControl extends FormControl {
 
   /** Toggles the control, as a click would, without firing events. */
   toggle(): void {
-    this.#dirty = true;
     this.checked = !this.checked;
   }
 
   // `input` fires before `change`, so sync `checked` here for input listeners.
   protected onNativeInput = (event: Event): void => {
-    this.#dirty = true;
     this.checked = (event.target as HTMLInputElement).checked;
   };
 

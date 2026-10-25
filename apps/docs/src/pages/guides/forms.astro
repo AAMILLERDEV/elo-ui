@@ -62,16 +62,38 @@ import Example from '../../components/Example.astro';
   />
 
   <h2>Frameworks</h2>
+  <p>
+    Each framework's own form bindings work, including checkboxes and switches binding{' '}
+    <code>checked</code>.
+  </p>
+  <h3>React</h3>
   <Code
-    code={`// React
-<EloInput label="Name" value={name} onInput={(e) => setName(e.currentTarget.value)} />
-
-<!-- Vue -->
-<elo-input label="Name" :value="name" @input="name = $event.target.value" />
-
-<!-- Angular -->
-<elo-input label="Name" [value]="name()" (input)="name.set($any($event.target).value)" />`}
+    code={`<EloInput label="Name" value={name} onInput={(e) => setName(e.target.value)} />
+<EloCheckbox label="Subscribe" checked={subscribe} onChange={(e) => setSubscribe(e.target.checked)} />`}
     lang="tsx"
+    themes={codeThemes}
+  />
+  <h3>Vue</h3>
+  <p>
+    Add <code>eloCompilerOptions</code> from <code>@elo-ui/vue</code> to your Vue plugin config,
+    then use <code>v-model</code>.
+  </p>
+  <Code
+    code={`<elo-input label="Name" v-model="name" />
+<elo-checkbox label="Subscribe" v-model="subscribe" />
+<elo-checkbox v-for="tag in tags" :key="tag" :label="tag" :value="tag" v-model="selected" />`}
+    lang="vue"
+    themes={codeThemes}
+  />
+  <h3>Angular</h3>
+  <p>
+    Import the directives from <code>@elo-ui/angular</code>; <code>ngModel</code>,{' '}
+    <code>formControl</code>, and <code>formControlName</code> all work.
+  </p>
+  <Code
+    code={`<elo-input label="Email" formControlName="email" />
+<elo-switch label="Notifications" [(ngModel)]="notify" />`}
+    lang="html"
     themes={codeThemes}
   />
 </Docs>

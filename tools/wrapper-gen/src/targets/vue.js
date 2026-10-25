@@ -1,3 +1,5 @@
+import { formKind } from '../manifest.js';
+
 // Vue renders custom elements natively, so it only needs template types.
 export function generateVue(elements) {
   const imports = elements
@@ -31,6 +33,12 @@ export {};
 `,
     'tags.ts': `/** Every custom element tag Elo UI defines. */
 export const eloTags = [${elements.map((el) => `'${el.tagName}'`).join(', ')}] as const;
+
+/** Tags whose v-model binds \`checked\` rather than \`value\`. */
+export const eloCheckedTags = [${elements
+      .filter((el) => formKind(el) === 'checked')
+      .map((el) => `'${el.tagName}'`)
+      .join(', ')}] as const;
 `,
   };
 }

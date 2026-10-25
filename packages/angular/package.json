@@ -37,6 +37,7 @@
     "@angular/compiler": "^22.2.3",
     "@angular/compiler-cli": "^22.2.3",
     "@angular/core": "^22.2.3",
+    "@angular/forms": "catalog:",
     "@angular/platform-browser": "^22.2.3",
     "@elo-ui/build-tools": "catalog:",
     "@elo-ui/core": "workspace:*",
@@ -47,7 +48,8 @@
     "vitest": "catalog:"
   },
   "peerDependencies": {
-    "@angular/core": ">=20.0.0"
+    "@angular/core": ">=20.0.0",
+    "@angular/forms": ">=20.0.0"
   },
   "publishConfig": {
     "directory": "dist",
