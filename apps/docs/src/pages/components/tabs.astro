@@ -1,0 +1,93 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Tabs"
+  description="An accessible tabs web component following the WAI-ARIA tabs pattern, with keyboard navigation."
+>
+  <h1>Tabs</h1>
+  <p class="lede">
+    Switch between related panels of content. The tab list is a single Tab stop; arrow keys move
+    between tabs, following the WAI-ARIA tabs pattern.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<elo-tabs label="Project settings" style="width: 100%">
+  <elo-tab panel="general">General</elo-tab>
+  <elo-tab panel="members">Members</elo-tab>
+  <elo-tab panel="billing">Billing</elo-tab>
+  <elo-tab panel="advanced" disabled>Advanced</elo-tab>
+  <elo-tab-panel name="general"><elo-input label="Project name" value="Acme Website"></elo-input></elo-tab-panel>
+  <elo-tab-panel name="members">Ada, Grace, and 6 others have access.</elo-tab-panel>
+  <elo-tab-panel name="billing">Billed monthly to the card ending in 4242.</elo-tab-panel>
+  <elo-tab-panel name="advanced">Advanced settings.</elo-tab-panel>
+</elo-tabs>`}
+  />
+
+  <h2>Vertical</h2>
+  <Example
+    code={`<elo-tabs label="Account" orientation="vertical" style="width: 100%">
+  <elo-tab panel="profile">Profile</elo-tab>
+  <elo-tab panel="security">Security</elo-tab>
+  <elo-tab panel="notifications">Notifications</elo-tab>
+  <elo-tab-panel name="profile">Name, photo, and contact details.</elo-tab-panel>
+  <elo-tab-panel name="security">Password and two-factor authentication.</elo-tab-panel>
+  <elo-tab-panel name="notifications">Email and in-app notifications.</elo-tab-panel>
+</elo-tabs>`}
+  />
+
+  <h2>Manual activation</h2>
+  <p>
+    Set <code>activation="manual"</code> when showing a panel is slow, so arrow keys only move focus
+    and Enter or Space selects.
+  </p>
+
+  <h2>Keyboard</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Tab</kbd>
+          </td>
+          <td>Moves into the tab list (to the selected tab), then into the panel.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Arrow keys</kbd>
+          </td>
+          <td>
+            Move between tabs, skipping disabled ones; selects them unless activation is manual.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Home / End</kbd>
+          </td>
+          <td>Move to the first or last tab.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Enter / Space</kbd>
+          </td>
+          <td>Selects the focused tab.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-tabs" />
+  <ApiReference tag="elo-tab" />
+  <ApiReference tag="elo-tab-panel" />
+</Docs>

@@ -1,0 +1,45 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Pagination"
+  description="An accessible pagination web component with page buttons or links, previous and next, and ellipses."
+>
+  <h1>Pagination</h1>
+  <p class="lede">
+    Moves between pages of results. Use <code>href-template</code> for real links (good for
+    server-rendered lists and SEO), or listen for <code>elo-page-change</code>.
+  </p>
+
+  <h2>Buttons</h2>
+  <Example
+    code={`<elo-pagination label="Orders pages" page="6" total-pages="20"></elo-pagination>`}
+  />
+
+  <h2>Links</h2>
+  <Example
+    code={`<elo-pagination label="Invoices pages" page="2" total-pages="5" href-template="?page={page}"></elo-pagination>`}
+  />
+
+  <h2>Accessibility</h2>
+  <ul>
+    <li>
+      Renders a <code>nav</code> landmark named "Pagination". With more than one on a page, give
+      each a distinct <code>label</code>.
+    </li>
+    <li>
+      Each control has a name such as "Page 3"; the current page has{' '}
+      <code>aria-current="page"</code>.
+    </li>
+    <li>
+      Translate names with the <code>labels</code> property:{' '}
+      <code>&#123; previous, next, page: 'Seite &#123;page&#125;' &#125;</code>.
+    </li>
+  </ul>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-pagination" />
+</Docs>

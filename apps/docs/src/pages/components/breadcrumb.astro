@@ -1,0 +1,35 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Breadcrumb"
+  description="An accessible breadcrumb web component showing the path to the current page."
+>
+  <h1>Breadcrumb</h1>
+  <p class="lede">
+    Shows where the current page sits in the hierarchy. The last item is marked as the current page
+    automatically.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<elo-breadcrumb>
+  <elo-breadcrumb-item href="/">Home</elo-breadcrumb-item>
+  <elo-breadcrumb-item href="/projects">Projects</elo-breadcrumb-item>
+  <elo-breadcrumb-item href="/projects/acme">Acme Website</elo-breadcrumb-item>
+  <elo-breadcrumb-item>Settings</elo-breadcrumb-item>
+</elo-breadcrumb>`}
+  />
+
+  <p>
+    It renders a <code>nav</code> landmark named "Breadcrumb" (change it with <code>label</code>)
+    containing an ordered list. Separators are hidden from screen readers.
+  </p>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-breadcrumb" />
+  <ApiReference tag="elo-breadcrumb-item" />
+</Docs>

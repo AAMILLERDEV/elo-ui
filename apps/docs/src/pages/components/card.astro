@@ -1,0 +1,53 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Card"
+  description="A card web component for grouping dashboard content, with header, actions, and footer slots."
+>
+  <h1>Card</h1>
+  <p class="lede">
+    A container for related content such as a metric, chart, or settings section. Set{' '}
+    <code>heading-level</code> so the card fits your page outline.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<elo-card heading="Monthly revenue" style="width: 18rem">
+  <div style="font-size: 2rem; font-weight: 600">$48,120</div>
+  <elo-badge variant="success">+12% vs last month</elo-badge>
+  <span slot="footer">Updated 5 minutes ago</span>
+</elo-card>`}
+  />
+
+  <h2>Header actions</h2>
+  <Example
+    code={`<elo-card heading="Team" style="width: 18rem">
+  <elo-dropdown slot="actions">
+    <elo-button slot="trigger" size="sm" variant="ghost">Manage</elo-button>
+    <elo-menu-item>Invite</elo-menu-item>
+    <elo-menu-item>Export list</elo-menu-item>
+  </elo-dropdown>
+  Ada, Grace, and 6 others.
+</elo-card>`}
+  />
+
+  <h2>Divider</h2>
+  <p>
+    <code>&lt;elo-divider&gt;</code> separates content, horizontally or vertically.
+  </p>
+  <Example
+    code={`<div style="width: 100%">
+  Overview
+  <elo-divider></elo-divider>
+  <div style="display: flex; align-items: center">Edit<elo-divider orientation="vertical"></elo-divider>Share<elo-divider orientation="vertical"></elo-divider>Archive</div>
+</div>`}
+  />
+
+  <h2>API</h2>
+  <ApiReference tag="elo-card" />
+  <ApiReference tag="elo-divider" />
+</Docs>

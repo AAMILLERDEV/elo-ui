@@ -28,6 +28,14 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./accordion": {
+      "types": "./dist/accordion/accordion.d.ts",
+      "default": "./dist/accordion/accordion.js"
+    },
+    "./accordion-item": {
+      "types": "./dist/accordion-item/accordion-item.d.ts",
+      "default": "./dist/accordion-item/accordion-item.js"
+    },
     "./alert": {
       "types": "./dist/alert/alert.d.ts",
       "default": "./dist/alert/alert.js"
@@ -36,9 +44,21 @@
       "types": "./dist/badge/badge.d.ts",
       "default": "./dist/badge/badge.js"
     },
+    "./breadcrumb": {
+      "types": "./dist/breadcrumb/breadcrumb.d.ts",
+      "default": "./dist/breadcrumb/breadcrumb.js"
+    },
+    "./breadcrumb-item": {
+      "types": "./dist/breadcrumb-item/breadcrumb-item.d.ts",
+      "default": "./dist/breadcrumb-item/breadcrumb-item.js"
+    },
     "./button": {
       "types": "./dist/button/button.d.ts",
       "default": "./dist/button/button.js"
+    },
+    "./card": {
+      "types": "./dist/card/card.d.ts",
+      "default": "./dist/card/card.js"
     },
     "./checkbox": {
       "types": "./dist/checkbox/checkbox.d.ts",
@@ -47,6 +67,10 @@
     "./dialog": {
       "types": "./dist/dialog/dialog.d.ts",
       "default": "./dist/dialog/dialog.js"
+    },
+    "./divider": {
+      "types": "./dist/divider/divider.d.ts",
+      "default": "./dist/divider/divider.js"
     },
     "./dropdown": {
       "types": "./dist/dropdown/dropdown.d.ts",
@@ -63,6 +87,10 @@
     "./menu-separator": {
       "types": "./dist/menu-separator/menu-separator.d.ts",
       "default": "./dist/menu-separator/menu-separator.js"
+    },
+    "./pagination": {
+      "types": "./dist/pagination/pagination.d.ts",
+      "default": "./dist/pagination/pagination.js"
     },
     "./popover": {
       "types": "./dist/popover/popover.d.ts",
@@ -95,6 +123,18 @@
     "./switch": {
       "types": "./dist/switch/switch.d.ts",
       "default": "./dist/switch/switch.js"
+    },
+    "./tab": {
+      "types": "./dist/tab/tab.d.ts",
+      "default": "./dist/tab/tab.js"
+    },
+    "./tab-panel": {
+      "types": "./dist/tab-panel/tab-panel.d.ts",
+      "default": "./dist/tab-panel/tab-panel.js"
+    },
+    "./tabs": {
+      "types": "./dist/tabs/tabs.d.ts",
+      "default": "./dist/tabs/tabs.js"
     },
     "./textarea": {
       "types": "./dist/textarea/textarea.d.ts",
