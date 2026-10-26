@@ -1,5 +1,6 @@
 ---
 import '@elo-ui/core/theme.css';
+import warmCss from '@elo-ui/core/themes/warm.css?url';
 
 interface Props {
   title: string;
@@ -14,6 +15,7 @@ const nav = [
     heading: 'Getting started',
     links: [
       { href: '/', label: 'Introduction' },
+      { href: '/guides/theming', label: 'Theming' },
       { href: '/guides/forms', label: 'Forms' },
     ],
   },
@@ -69,6 +71,15 @@ const nav = [
     </script>
   </head>
   <body>
+    <!-- After all head styles so it wins the cascade; enabled by the Style menu. -->
+    <link id="elo-style-warm" rel="stylesheet" href={warmCss} media="not all" />
+    <script is:inline>
+      try {
+        if (localStorage.getItem('elo-docs-style') === 'warm') {
+          document.getElementById('elo-style-warm').media = 'all';
+        }
+      } catch {}
+    </script>
     <a class="skip-link" href="#main">
       Skip to content
     </a>
@@ -77,6 +88,13 @@ const nav = [
         Elo UI
       </a>
       <div class="prefs">
+        <label>
+          Style
+          <select id="style-select">
+            <option value="default">Default</option>
+            <option value="warm">Warm</option>
+          </select>
+        </label>
         <label>
           Theme
           <select id="theme-select">
@@ -149,6 +167,15 @@ const nav = [
         if (value === 'comfortable') delete root.dataset.eloDensity;
         else root.dataset.eloDensity = value;
         save('elo-docs-density', value === 'comfortable' ? null : value);
+      });
+
+      const styleSelect = document.querySelector<HTMLSelectElement>('#style-select')!;
+      const warmLink = document.querySelector<HTMLLinkElement>('#elo-style-warm')!;
+      styleSelect.value = warmLink.media === 'all' ? 'warm' : 'default';
+      styleSelect.addEventListener('change', () => {
+        const warm = styleSelect.value === 'warm';
+        warmLink.media = warm ? 'all' : 'not all';
+        save('elo-docs-style', warm ? 'warm' : null);
       });
     </script>
   </body>

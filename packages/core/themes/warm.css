@@ -1,0 +1,123 @@
+/* Warm theme: stone grays, teal accent, rounder corners. Import after theme.css. */
+
+/* Primitives */
+:root {
+  --elo-stone-50: #fafaf9;
+  --elo-stone-100: #f5f5f4;
+  --elo-stone-200: #e7e5e4;
+  --elo-stone-300: #d6d3d1;
+  --elo-stone-400: #a8a29e;
+  --elo-stone-500: #78716c;
+  --elo-stone-600: #57534e;
+  --elo-stone-700: #44403c;
+  --elo-stone-800: #292524;
+  --elo-stone-900: #1c1917;
+  --elo-stone-950: #0c0a09;
+
+  --elo-teal-50: #f0fdfa;
+  --elo-teal-100: #ccfbf1;
+  --elo-teal-200: #99f6e4;
+  --elo-teal-300: #5eead4;
+  --elo-teal-400: #2dd4bf;
+  --elo-teal-500: #14b8a6;
+  --elo-teal-600: #0d9488;
+  --elo-teal-700: #0f766e;
+  --elo-teal-800: #115e59;
+  --elo-teal-900: #134e4a;
+  --elo-teal-950: #042f2e;
+
+  --elo-radius-sm: 6px;
+  --elo-radius-md: 10px;
+  --elo-radius-lg: 14px;
+}
+
+/* Light */
+:root,
+[data-elo-theme='light'] {
+  --elo-color-bg: var(--elo-stone-50);
+  --elo-color-surface: var(--elo-white);
+  --elo-color-surface-hover: var(--elo-stone-100);
+  --elo-color-surface-active: var(--elo-stone-200);
+  --elo-color-border: var(--elo-stone-200);
+  --elo-color-border-strong: var(--elo-stone-300);
+  --elo-color-border-control: var(--elo-stone-500);
+  --elo-color-fg: var(--elo-stone-900);
+  --elo-color-fg-muted: var(--elo-stone-600);
+
+  /* Teal-700, not 600: white on teal-600 is only 3.7:1. */
+  --elo-color-accent: var(--elo-teal-700);
+  --elo-color-accent-hover: var(--elo-teal-800);
+  --elo-color-accent-active: var(--elo-teal-900);
+  --elo-color-accent-text: var(--elo-teal-700);
+  --elo-color-focus-ring: var(--elo-teal-700);
+
+  --elo-color-inverse-bg: var(--elo-stone-900);
+  --elo-color-inverse-fg: var(--elo-stone-50);
+  --elo-color-neutral-soft-bg: var(--elo-stone-100);
+  --elo-color-neutral-soft-border: var(--elo-stone-200);
+  --elo-color-neutral-soft-fg: var(--elo-stone-800);
+  --elo-color-backdrop: rgb(28 25 23 / 0.45);
+
+  --elo-shadow-sm: 0 1px 3px rgb(28 25 23 / 0.06);
+  --elo-shadow-lg: 0 12px 32px rgb(28 25 23 / 0.12), 0 2px 6px rgb(28 25 23 / 0.06);
+}
+
+/* Dark: automatic, unless light is forced on the root */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-elo-theme='light']) {
+    --elo-color-bg: var(--elo-stone-950);
+    --elo-color-surface: var(--elo-stone-900);
+    --elo-color-surface-hover: var(--elo-stone-800);
+    --elo-color-surface-active: var(--elo-stone-700);
+    --elo-color-border: var(--elo-stone-800);
+    --elo-color-border-strong: var(--elo-stone-700);
+    --elo-color-border-control: var(--elo-stone-500);
+    --elo-color-fg: var(--elo-stone-50);
+    --elo-color-fg-muted: var(--elo-stone-400);
+
+    --elo-color-accent: var(--elo-teal-700);
+    --elo-color-accent-hover: var(--elo-teal-800);
+    --elo-color-accent-active: var(--elo-teal-900);
+    --elo-color-accent-text: var(--elo-teal-300);
+    --elo-color-focus-ring: var(--elo-teal-400);
+
+    --elo-color-inverse-bg: var(--elo-stone-50);
+    --elo-color-inverse-fg: var(--elo-stone-900);
+    --elo-color-neutral-soft-bg: var(--elo-stone-900);
+    --elo-color-neutral-soft-border: var(--elo-stone-700);
+    --elo-color-neutral-soft-fg: var(--elo-stone-200);
+    --elo-color-backdrop: rgb(0 0 0 / 0.6);
+
+    --elo-shadow-sm: 0 1px 3px rgb(0 0 0 / 0.4);
+    --elo-shadow-lg: 0 12px 32px rgb(0 0 0 / 0.5), 0 0 0 1px rgb(255 255 255 / 0.05);
+  }
+}
+
+/* Dark: forced */
+[data-elo-theme='dark'] {
+  --elo-color-bg: var(--elo-stone-950);
+  --elo-color-surface: var(--elo-stone-900);
+  --elo-color-surface-hover: var(--elo-stone-800);
+  --elo-color-surface-active: var(--elo-stone-700);
+  --elo-color-border: var(--elo-stone-800);
+  --elo-color-border-strong: var(--elo-stone-700);
+  --elo-color-border-control: var(--elo-stone-500);
+  --elo-color-fg: var(--elo-stone-50);
+  --elo-color-fg-muted: var(--elo-stone-400);
+
+  --elo-color-accent: var(--elo-teal-700);
+  --elo-color-accent-hover: var(--elo-teal-800);
+  --elo-color-accent-active: var(--elo-teal-900);
+  --elo-color-accent-text: var(--elo-teal-300);
+  --elo-color-focus-ring: var(--elo-teal-400);
+
+  --elo-color-inverse-bg: var(--elo-stone-50);
+  --elo-color-inverse-fg: var(--elo-stone-900);
+  --elo-color-neutral-soft-bg: var(--elo-stone-900);
+  --elo-color-neutral-soft-border: var(--elo-stone-700);
+  --elo-color-neutral-soft-fg: var(--elo-stone-200);
+  --elo-color-backdrop: rgb(0 0 0 / 0.6);
+
+  --elo-shadow-sm: 0 1px 3px rgb(0 0 0 / 0.4);
+  --elo-shadow-lg: 0 12px 32px rgb(0 0 0 / 0.5), 0 0 0 1px rgb(255 255 255 / 0.05);
+}

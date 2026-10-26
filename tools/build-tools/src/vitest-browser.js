@@ -31,6 +31,8 @@ export function browserTest({ port, include, depsFrom, prebundle = true }) {
     },
     test: {
       include,
+      // Files share one page per browser, so parallel files steal each other's focus and hover.
+      fileParallelism: false,
       api: { port, strictPort: true, host: '127.0.0.1' },
       browser: {
         enabled: true,

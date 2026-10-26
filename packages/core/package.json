@@ -32,12 +32,17 @@
     "./theme.css": {
       "types": "./theme.css.d.ts",
       "default": "./theme.css"
+    },
+    "./themes/*.css": {
+      "types": "./theme.css.d.ts",
+      "default": "./themes/*.css"
     }
   },
   "files": [
     "dist",
     "theme.css",
-    "theme.css.d.ts"
+    "theme.css.d.ts",
+    "themes"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",

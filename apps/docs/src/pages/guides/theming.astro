@@ -1,0 +1,142 @@
+---
+import { Code } from 'astro:components';
+import { codeThemes } from '../../code-themes';
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+---
+
+<Docs
+  title="Theming"
+  description="Theme Elo UI with design tokens: light and dark mode, density, the warm theme, and your own brand."
+>
+  <h1>Theming</h1>
+  <p class="lede">
+    Every color, radius, and spacing value is a CSS custom property. Load the base theme, optionally
+    a theme on top, and override semantic tokens to match your brand.
+  </p>
+
+  <h2>Light and dark</h2>
+  <p>
+    The theme follows the user's color scheme. Set <code>data-elo-theme="light"</code> or
+    <code>"dark"</code> on any element to force a theme for that part of the page.
+  </p>
+  <Example
+    code={`<div data-elo-theme="dark" style="padding: 1rem; background: var(--elo-color-bg); border-radius: 8px">
+  <elo-button variant="primary">Always dark</elo-button>
+</div>`}
+  />
+
+  <h2>Density</h2>
+  <p>
+    Set <code>data-elo-density="compact"</code> on any element for tighter controls in data-heavy
+    screens. Try it with the Density menu at the top of this page.
+  </p>
+
+  <h2>Warm theme</h2>
+  <p>
+    A second look ships with the package: stone grays, a teal accent, rounder corners, and softer
+    shadows, in light and dark. Import it after the base theme. Preview it with the Style menu at
+    the top of this page.
+  </p>
+  <Code
+    code={`import '@elo-ui/core/theme.css';
+import '@elo-ui/core/themes/warm.css';`}
+    lang="js"
+    themes={codeThemes}
+  />
+
+  <h2>Your own brand</h2>
+  <p>
+    Override semantic tokens, not primitives, and define both light and dark values with the same
+    selectors the base theme uses.
+  </p>
+  <Code
+    code={`:root,
+[data-elo-theme='light'] {
+  --elo-color-accent: #7c3aed;
+  --elo-color-accent-hover: #6d28d9;
+  --elo-color-accent-active: #5b21b6;
+  --elo-color-accent-text: #6d28d9;
+  --elo-color-focus-ring: #7c3aed;
+}
+
+[data-elo-theme='dark'] {
+  --elo-color-accent-text: #c4b5fd;
+  --elo-color-focus-ring: #a78bfa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-elo-theme='light']) {
+    --elo-color-accent-text: #c4b5fd;
+    --elo-color-focus-ring: #a78bfa;
+  }
+}`}
+    lang="css"
+    themes={codeThemes}
+  />
+
+  <h2>Keeping it accessible</h2>
+  <p>
+    Every theme Elo UI ships is checked automatically against WCAG AA in light and dark: text on
+    every background (4.5:1), button text on accent and danger colors, all five status variants, and
+    control borders and focus rings (3:1). When you set your own colors, check these pairs:
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Foreground</th>
+          <th>Background</th>
+          <th>Minimum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code>--elo-color-accent-fg</code>
+          </td>
+          <td>
+            <code>--elo-color-accent</code>, <code>-hover</code>
+          </td>
+          <td>4.5:1</td>
+        </tr>
+        <tr>
+          <td>
+            <code>--elo-color-accent-text</code>
+          </td>
+          <td>
+            <code>--elo-color-surface</code>
+          </td>
+          <td>4.5:1</td>
+        </tr>
+        <tr>
+          <td>
+            <code>--elo-color-fg-muted</code>
+          </td>
+          <td>
+            <code>--elo-color-surface</code>, <code>--elo-color-bg</code>
+          </td>
+          <td>4.5:1</td>
+        </tr>
+        <tr>
+          <td>
+            <code>--elo-color-border-control</code>
+          </td>
+          <td>
+            <code>--elo-color-surface</code>
+          </td>
+          <td>3:1</td>
+        </tr>
+        <tr>
+          <td>
+            <code>--elo-color-focus-ring</code>
+          </td>
+          <td>
+            <code>--elo-color-surface</code>, <code>--elo-color-bg</code>
+          </td>
+          <td>3:1</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</Docs>

@@ -23,9 +23,9 @@
   "type": "module",
   "scripts": {
     "generate": "elo-wrapper-gen angular",
-    "build": "pnpm generate && ng-packagr -p ng-package.json -c tsconfig.build.json",
-    "typecheck": "pnpm generate && tsc --noEmit",
-    "test": "pnpm generate && vitest run",
+    "build": "ng-packagr -p ng-package.json -c tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "lint:package": "publint --pack pnpm --strict && attw --pack dist --profile esm-only"
   },
   "dependencies": {

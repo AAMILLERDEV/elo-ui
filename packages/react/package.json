@@ -32,9 +32,9 @@
   ],
   "scripts": {
     "generate": "elo-wrapper-gen react",
-    "build": "pnpm generate && tsc -p tsconfig.build.json",
-    "typecheck": "pnpm generate && tsc --noEmit",
-    "test": "pnpm generate && vitest run",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "lint:package": "publint --pack pnpm --strict && attw --pack . --profile esm-only"
   },
   "dependencies": {
