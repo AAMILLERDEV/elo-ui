@@ -1,0 +1,31 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs title="Badge" description="An accessible badge web component for short status labels.">
+  <h1>Badge</h1>
+  <p class="lede">
+    A short status label. Pair color with text, so status never depends on color alone.
+  </p>
+
+  <h2>Variants</h2>
+  <Example
+    code={`<elo-badge variant="info">Info</elo-badge>
+<elo-badge variant="success">Success</elo-badge>
+<elo-badge variant="warning">Warning</elo-badge>
+<elo-badge variant="danger">Danger</elo-badge>
+<elo-badge variant="neutral">Neutral</elo-badge>`}
+  />
+
+  <h2>With a dot</h2>
+  <Example
+    code={`<elo-badge variant="success" dot>Operational</elo-badge>
+<elo-badge variant="warning" dot>Degraded</elo-badge>
+<elo-badge variant="danger" dot>Outage</elo-badge>`}
+  />
+
+  <h2>API</h2>
+  <ApiReference tag="elo-badge" />
+</Docs>

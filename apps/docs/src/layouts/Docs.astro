@@ -20,16 +20,20 @@ const nav = [
   {
     heading: 'Components',
     links: [
+      { href: '/components/alert', label: 'Alert' },
+      { href: '/components/badge', label: 'Badge' },
       { href: '/components/button', label: 'Button' },
       { href: '/components/checkbox', label: 'Checkbox' },
       { href: '/components/dialog', label: 'Dialog' },
       { href: '/components/dropdown', label: 'Dropdown menu' },
       { href: '/components/input', label: 'Input' },
       { href: '/components/popover', label: 'Popover' },
+      { href: '/components/progress', label: 'Progress & loading' },
       { href: '/components/radio-group', label: 'Radio group' },
       { href: '/components/select', label: 'Select' },
       { href: '/components/switch', label: 'Switch' },
       { href: '/components/textarea', label: 'Textarea' },
+      { href: '/components/toast', label: 'Toast' },
       { href: '/components/tooltip', label: 'Tooltip' },
     ],
   },
@@ -104,7 +108,10 @@ const nav = [
     </div>
 
     <script>
-      import '@elo-ui/components';
+      import { toast } from '@elo-ui/components';
+
+      // Lets demo buttons call toast() from inline handlers.
+      Object.assign(window, { toast });
 
       const root = document.documentElement;
       const themeSelect = document.querySelector<HTMLSelectElement>('#theme-select')!;

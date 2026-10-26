@@ -40,6 +40,44 @@
   --elo-red-800: #991b1b;
   --elo-red-900: #7f1d1d;
   --elo-red-950: #450a0a;
+
+  --elo-blue-50: #eff6ff;
+  --elo-blue-100: #dbeafe;
+  --elo-blue-200: #bfdbfe;
+  --elo-blue-300: #93c5fd;
+  --elo-blue-400: #60a5fa;
+  --elo-blue-500: #3b82f6;
+  --elo-blue-600: #2563eb;
+  --elo-blue-700: #1d4ed8;
+  --elo-blue-800: #1e40af;
+  --elo-blue-900: #1e3a8a;
+  --elo-blue-950: #172554;
+
+  --elo-green-50: #f0fdf4;
+  --elo-green-100: #dcfce7;
+  --elo-green-200: #bbf7d0;
+  --elo-green-300: #86efac;
+  --elo-green-400: #4ade80;
+
+  --elo-green-500: #22c55e;
+  --elo-green-600: #16a34a;
+  --elo-green-700: #15803d;
+  --elo-green-800: #166534;
+  --elo-green-900: #14532d;
+  --elo-green-950: #052e16;
+
+  --elo-amber-50: #fffbeb;
+  --elo-amber-100: #fef3c7;
+  --elo-amber-200: #fde68a;
+  --elo-amber-300: #fcd34d;
+  --elo-amber-400: #fbbf24;
+
+  --elo-amber-500: #f59e0b;
+  --elo-amber-600: #d97706;
+  --elo-amber-700: #b45309;
+  --elo-amber-800: #92400e;
+  --elo-amber-900: #78350f;
+  --elo-amber-950: #451a03;
 }
 
 /* Theme-independent semantic tokens */
@@ -137,6 +175,21 @@
   --elo-color-backdrop: rgb(9 9 11 / 0.5);
   --elo-color-inverse-bg: var(--elo-gray-900);
   --elo-color-inverse-fg: var(--elo-gray-50);
+  --elo-color-info-soft-bg: var(--elo-blue-50);
+  --elo-color-info-soft-border: var(--elo-blue-200);
+  --elo-color-info-soft-fg: var(--elo-blue-800);
+  --elo-color-success-soft-bg: var(--elo-green-50);
+  --elo-color-success-soft-border: var(--elo-green-200);
+  --elo-color-success-soft-fg: var(--elo-green-800);
+  --elo-color-warning-soft-bg: var(--elo-amber-50);
+  --elo-color-warning-soft-border: var(--elo-amber-200);
+  --elo-color-warning-soft-fg: var(--elo-amber-800);
+  --elo-color-danger-soft-bg: var(--elo-red-50);
+  --elo-color-danger-soft-border: var(--elo-red-200);
+  --elo-color-danger-soft-fg: var(--elo-red-800);
+  --elo-color-neutral-soft-bg: var(--elo-gray-100);
+  --elo-color-neutral-soft-border: var(--elo-gray-200);
+  --elo-color-neutral-soft-fg: var(--elo-gray-800);
 }
 
 /* Dark theme: automatic, unless light is forced on the root */
@@ -172,6 +225,21 @@
     --elo-color-backdrop: rgb(0 0 0 / 0.6);
     --elo-color-inverse-bg: var(--elo-gray-50);
     --elo-color-inverse-fg: var(--elo-gray-900);
+    --elo-color-info-soft-bg: var(--elo-blue-950);
+    --elo-color-info-soft-border: var(--elo-blue-800);
+    --elo-color-info-soft-fg: var(--elo-blue-300);
+    --elo-color-success-soft-bg: var(--elo-green-950);
+    --elo-color-success-soft-border: var(--elo-green-800);
+    --elo-color-success-soft-fg: var(--elo-green-300);
+    --elo-color-warning-soft-bg: var(--elo-amber-950);
+    --elo-color-warning-soft-border: var(--elo-amber-800);
+    --elo-color-warning-soft-fg: var(--elo-amber-300);
+    --elo-color-danger-soft-bg: var(--elo-red-950);
+    --elo-color-danger-soft-border: var(--elo-red-800);
+    --elo-color-danger-soft-fg: var(--elo-red-300);
+    --elo-color-neutral-soft-bg: var(--elo-gray-900);
+    --elo-color-neutral-soft-border: var(--elo-gray-700);
+    --elo-color-neutral-soft-fg: var(--elo-gray-200);
   }
 }
 
@@ -207,4 +275,19 @@
   --elo-color-backdrop: rgb(0 0 0 / 0.6);
   --elo-color-inverse-bg: var(--elo-gray-50);
   --elo-color-inverse-fg: var(--elo-gray-900);
+  --elo-color-info-soft-bg: var(--elo-blue-950);
+  --elo-color-info-soft-border: var(--elo-blue-800);
+  --elo-color-info-soft-fg: var(--elo-blue-300);
+  --elo-color-success-soft-bg: var(--elo-green-950);
+  --elo-color-success-soft-border: var(--elo-green-800);
+  --elo-color-success-soft-fg: var(--elo-green-300);
+  --elo-color-warning-soft-bg: var(--elo-amber-950);
+  --elo-color-warning-soft-border: var(--elo-amber-800);
+  --elo-color-warning-soft-fg: var(--elo-amber-300);
+  --elo-color-danger-soft-bg: var(--elo-red-950);
+  --elo-color-danger-soft-border: var(--elo-red-800);
+  --elo-color-danger-soft-fg: var(--elo-red-300);
+  --elo-color-neutral-soft-bg: var(--elo-gray-900);
+  --elo-color-neutral-soft-border: var(--elo-gray-700);
+  --elo-color-neutral-soft-fg: var(--elo-gray-200);
 }

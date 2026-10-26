@@ -1,0 +1,54 @@
+---
+import { Code } from 'astro:components';
+import { codeThemes } from '../../code-themes';
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Toast"
+  description="Accessible toast notifications with a simple toast() function, auto-dismiss, and screen reader announcements."
+>
+  <h1>Toast</h1>
+  <p class="lede">
+    Brief notifications that appear in a corner of the screen. Call <code>toast()</code> from
+    anywhere; toasts are announced to screen readers, pause while hovered or focused, and stay above
+    dialogs.
+  </p>
+
+  <h2>Showing a toast</h2>
+  <Example
+    code={`<elo-button onclick="toast({ heading: 'Saved', message: 'Your changes are live.', variant: 'success' })">Save</elo-button>
+<elo-button onclick="toast({ message: 'Upload failed. Check your connection.', variant: 'danger' })">Fail</elo-button>
+<elo-button onclick="toast({ message: 'Project archived.', action: { label: 'Undo', onClick: () => {} } })">Archive</elo-button>`}
+  />
+  <Code
+    code={`import { toast } from '@elo-ui/components';
+
+toast({ heading: 'Saved', message: 'Your changes are live.', variant: 'success' });
+toast({ message: 'Project archived.', action: { label: 'Undo', onClick: restore } });`}
+    lang="js"
+    themes={codeThemes}
+  />
+
+  <h2>Timing</h2>
+  <ul>
+    <li>
+      Toasts dismiss themselves after 5 seconds; set <code>duration</code> (or 0 to keep them).
+    </li>
+    <li>The timer pauses while the pointer or keyboard focus is on a toast.</li>
+    <li>Danger toasts and toasts with an action stay until dismissed, so nobody misses them.</li>
+    <li>Escape or the dismiss button closes a toast.</li>
+  </ul>
+
+  <h2>Placement</h2>
+  <p>
+    Pass <code>placement</code> (such as <code>top-center</code>) or add your own{' '}
+    <code>&lt;elo-toast-region placement="..."&gt;</code> to the page.
+  </p>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-toast" />
+  <ApiReference tag="elo-toast-region" />
+</Docs>

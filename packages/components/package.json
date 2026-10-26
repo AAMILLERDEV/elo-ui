@@ -28,6 +28,14 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./alert": {
+      "types": "./dist/alert/alert.d.ts",
+      "default": "./dist/alert/alert.js"
+    },
+    "./badge": {
+      "types": "./dist/badge/badge.d.ts",
+      "default": "./dist/badge/badge.js"
+    },
     "./button": {
       "types": "./dist/button/button.d.ts",
       "default": "./dist/button/button.js"
@@ -60,6 +68,10 @@
       "types": "./dist/popover/popover.d.ts",
       "default": "./dist/popover/popover.js"
     },
+    "./progress": {
+      "types": "./dist/progress/progress.d.ts",
+      "default": "./dist/progress/progress.js"
+    },
     "./radio": {
       "types": "./dist/radio/radio.d.ts",
       "default": "./dist/radio/radio.js"
@@ -72,6 +84,14 @@
       "types": "./dist/select/select.d.ts",
       "default": "./dist/select/select.js"
     },
+    "./skeleton": {
+      "types": "./dist/skeleton/skeleton.d.ts",
+      "default": "./dist/skeleton/skeleton.js"
+    },
+    "./spinner": {
+      "types": "./dist/spinner/spinner.d.ts",
+      "default": "./dist/spinner/spinner.js"
+    },
     "./switch": {
       "types": "./dist/switch/switch.d.ts",
       "default": "./dist/switch/switch.js"
@@ -79,6 +99,14 @@
     "./textarea": {
       "types": "./dist/textarea/textarea.d.ts",
       "default": "./dist/textarea/textarea.js"
+    },
+    "./toast": {
+      "types": "./dist/toast/toast.d.ts",
+      "default": "./dist/toast/toast.js"
+    },
+    "./toast-region": {
+      "types": "./dist/toast-region/toast-region.d.ts",
+      "default": "./dist/toast-region/toast-region.js"
     },
     "./tooltip": {
       "types": "./dist/tooltip/tooltip.d.ts",

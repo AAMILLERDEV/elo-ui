@@ -1,0 +1,53 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Progress"
+  description="Accessible progress bar, spinner, and skeleton web components for loading states."
+>
+  <h1>Progress</h1>
+  <p class="lede">
+    Show how far along a task is with a progress bar, or that something is loading with a spinner or
+    skeleton placeholders.
+  </p>
+
+  <h2>Progress bar</h2>
+  <Example
+    stack
+    code={`<elo-progress label="Storage used" value="42"></elo-progress>
+<elo-progress label="Importing contacts" value="3" max="10" value-text="3 of 10 files"></elo-progress>
+<elo-progress label="Preparing export"></elo-progress>`}
+  />
+
+  <h2>Spinner</h2>
+  <p>
+    Sizes with <code>font-size</code>. Give it a <code>label</code> that says what is loading.
+  </p>
+  <Example
+    code={`<elo-spinner label="Loading orders"></elo-spinner>
+<elo-spinner label="Loading orders" style="font-size: 2rem"></elo-spinner>`}
+  />
+
+  <h2>Skeleton</h2>
+  <p>
+    Placeholders are hidden from screen readers. Mark the loading region with{' '}
+    <code>aria-busy="true"</code> and remove it when content arrives.
+  </p>
+  <Example
+    code={`<div aria-busy="true" style="display: flex; gap: 1rem; align-items: center; width: 100%">
+  <elo-skeleton shape="circle"></elo-skeleton>
+  <div style="flex: 1">
+    <elo-skeleton style="--elo-skeleton-width: 40%"></elo-skeleton>
+    <elo-skeleton></elo-skeleton>
+  </div>
+</div>`}
+  />
+
+  <h2>API</h2>
+  <ApiReference tag="elo-progress" />
+  <ApiReference tag="elo-spinner" />
+  <ApiReference tag="elo-skeleton" />
+</Docs>

@@ -1,0 +1,44 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Alert"
+  description="An accessible alert web component for info, success, warning, and error messages."
+>
+  <h1>Alert</h1>
+  <p class="lede">
+    A message about the page or a task. Five variants share colors and icons with badges and toasts.
+  </p>
+
+  <h2>Variants</h2>
+  <Example
+    stack
+    code={`<elo-alert variant="info" heading="Scheduled maintenance">The dashboard will be read-only on Sunday from 02:00 to 03:00 UTC.</elo-alert>
+<elo-alert variant="success" heading="Payment received">Invoice #1042 was paid in full.</elo-alert>
+<elo-alert variant="warning" heading="Trial ends in 3 days">Add a payment method to keep your projects running.</elo-alert>
+<elo-alert variant="danger" heading="Deployment failed">The build exited with code 1.</elo-alert>
+<elo-alert variant="neutral">You are viewing an archived project.</elo-alert>`}
+  />
+
+  <h2>Actions and closing</h2>
+  <Example
+    stack
+    code={`<elo-alert variant="warning" heading="Unverified email" closable>
+  Verify your address to receive billing notices.
+  <elo-button slot="actions" size="sm">Resend email</elo-button>
+</elo-alert>`}
+  />
+
+  <h2>Announcing</h2>
+  <p>
+    Alerts on the page when it loads aren't announced; screen reader users find them while reading.
+    For alerts you insert later, such as a form submission result, add <code>announce</code>: danger
+    and warning alerts interrupt, others wait politely.
+  </p>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-alert" />
+</Docs>
