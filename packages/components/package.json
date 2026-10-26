@@ -40,6 +40,10 @@
       "types": "./dist/alert/alert.d.ts",
       "default": "./dist/alert/alert.js"
     },
+    "./avatar": {
+      "types": "./dist/avatar/avatar.d.ts",
+      "default": "./dist/avatar/avatar.js"
+    },
     "./badge": {
       "types": "./dist/badge/badge.d.ts",
       "default": "./dist/badge/badge.js"
@@ -55,6 +59,10 @@
     "./button": {
       "types": "./dist/button/button.d.ts",
       "default": "./dist/button/button.js"
+    },
+    "./button-group": {
+      "types": "./dist/button-group/button-group.d.ts",
+      "default": "./dist/button-group/button-group.js"
     },
     "./card": {
       "types": "./dist/card/card.d.ts",
@@ -76,9 +84,17 @@
       "types": "./dist/dropdown/dropdown.d.ts",
       "default": "./dist/dropdown/dropdown.js"
     },
+    "./icon-button": {
+      "types": "./dist/icon-button/icon-button.d.ts",
+      "default": "./dist/icon-button/icon-button.js"
+    },
     "./input": {
       "types": "./dist/input/input.d.ts",
       "default": "./dist/input/input.js"
+    },
+    "./link": {
+      "types": "./dist/link/link.d.ts",
+      "default": "./dist/link/link.js"
     },
     "./menu-item": {
       "types": "./dist/menu-item/menu-item.d.ts",
@@ -135,6 +151,10 @@
     "./tabs": {
       "types": "./dist/tabs/tabs.d.ts",
       "default": "./dist/tabs/tabs.js"
+    },
+    "./tag": {
+      "types": "./dist/tag/tag.d.ts",
+      "default": "./dist/tag/tag.js"
     },
     "./textarea": {
       "types": "./dist/textarea/textarea.d.ts",

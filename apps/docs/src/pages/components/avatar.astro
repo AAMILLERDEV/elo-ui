@@ -1,0 +1,36 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Avatar"
+  description="An accessible avatar web component with an image and an initials fallback."
+>
+  <h1>Avatar</h1>
+  <p class="lede">
+    A person's picture, falling back to their initials when there is no image or it fails to load.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<elo-avatar name="Ada Lovelace" size="sm"></elo-avatar>
+<elo-avatar name="Grace Hopper"></elo-avatar>
+<elo-avatar name="Margaret Hamilton" size="lg"></elo-avatar>`}
+  />
+
+  <h2>Next to a name</h2>
+  <p>
+    When the name is already visible, add <code>decorative</code> so screen readers don't read it
+    twice.
+  </p>
+  <Example
+    code={`<span style="display: inline-flex; gap: 0.5rem; align-items: center">
+  <elo-avatar name="Ada Lovelace" decorative></elo-avatar> Ada Lovelace
+</span>`}
+  />
+
+  <h2>API</h2>
+  <ApiReference tag="elo-avatar" />
+</Docs>

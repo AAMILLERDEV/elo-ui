@@ -48,6 +48,9 @@ export class EloTooltip extends LitElement {
   /** Milliseconds to wait on hover before showing. Keyboard focus shows immediately. */
   @property({ type: Number, attribute: 'show-delay' }) accessor showDelay = 300;
 
+  /** Also announce the text as the trigger's description. Turn off when it repeats the trigger's name. */
+  @property({ type: Boolean }) accessor describe = true;
+
   /** Whether the tooltip is showing. */
   @property({ type: Boolean, reflect: true }) accessor open = false;
 
@@ -78,13 +81,14 @@ export class EloTooltip extends LitElement {
 
   protected override updated(changed: PropertyValues<this>): void {
     super.updated(changed);
-    if (changed.has('content')) this.#describeTrigger();
+    if (changed.has('content') || changed.has('describe')) this.#describeTrigger();
     if (changed.has('open')) this.#sync();
   }
 
   #describeTrigger = (): void => {
     const trigger = this.#trigger;
-    if (trigger) setTriggerState(trigger, { description: this.content || undefined });
+    const description = this.describe ? this.content || undefined : undefined;
+    if (trigger) setTriggerState(trigger, { description });
   };
 
   #scheduleShow(delay: number): void {

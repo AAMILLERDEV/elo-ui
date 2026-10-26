@@ -1,0 +1,40 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Button group"
+  description="A button group web component that joins related buttons into a segmented control."
+>
+  <h1>Button group</h1>
+  <p class="lede">
+    Joins related buttons, such as view switchers or split actions. Give the group a{' '}
+    <code>label</code> so screen readers announce what the buttons are for.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<elo-button-group label="View">
+  <elo-button>List</elo-button>
+  <elo-button>Board</elo-button>
+  <elo-button>Calendar</elo-button>
+</elo-button-group>`}
+  />
+
+  <h2>Split action</h2>
+  <Example
+    code={`<elo-button-group label="Publish">
+  <elo-button variant="primary">Publish</elo-button>
+  <elo-dropdown>
+    <elo-icon-button slot="trigger" variant="primary" label="More publish options"><svg aria-hidden="true" viewBox="0 0 16 16" fill="currentColor"><circle cx="3.5" cy="8" r="1.25"/><circle cx="8" cy="8" r="1.25"/><circle cx="12.5" cy="8" r="1.25"/></svg></elo-icon-button>
+    <elo-menu-item>Schedule</elo-menu-item>
+    <elo-menu-item>Save as draft</elo-menu-item>
+  </elo-dropdown>
+</elo-button-group>`}
+  />
+
+  <h2>API</h2>
+  <ApiReference tag="elo-button-group" />
+</Docs>

@@ -1,0 +1,51 @@
+---
+import { Code } from 'astro:components';
+import { codeThemes } from '../../code-themes';
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Tag"
+  description="An accessible tag web component for categories and filters, with an optional remove button."
+>
+  <h1>Tag</h1>
+  <p class="lede">
+    A label for a category, filter, or selected value. Removable tags fire <code>elo-remove</code>;
+    your app decides what to remove.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<elo-tag>Design</elo-tag>
+<elo-tag variant="info">Beta</elo-tag>
+<elo-tag variant="success">Paid</elo-tag>`}
+  />
+
+  <h2>Removable</h2>
+  <p>Each remove button is named after its tag, such as "Remove Design".</p>
+  <Example
+    code={`<div id="tag-demo" style="display: flex; gap: 0.5rem">
+  <elo-tag removable>Design</elo-tag>
+  <elo-tag removable>Engineering</elo-tag>
+  <elo-tag removable>Marketing</elo-tag>
+</div>`}
+  />
+
+  <Code
+    code={`document.querySelector('#tag-demo').addEventListener('elo-remove', (event) => {
+  event.target.remove();
+});`}
+    lang="js"
+    themes={codeThemes}
+  />
+  <script>
+    document.querySelector('#tag-demo')?.addEventListener('elo-remove', (event) => {
+      (event.target as HTMLElement).remove();
+    });
+  </script>
+
+  <h2>API</h2>
+  <ApiReference tag="elo-tag" />
+</Docs>

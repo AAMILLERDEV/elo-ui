@@ -1,0 +1,32 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import ApiReference from '../../components/ApiReference.astro';
+---
+
+<Docs
+  title="Link"
+  description="An accessible link web component, with external links that announce opening in a new tab."
+>
+  <h1>Link</h1>
+  <p class="lede">
+    A styled text link. External links open in a new tab, show an icon, and tell screen reader users
+    they open a new tab.
+  </p>
+
+  <h2>Basic</h2>
+  <Example
+    code={`<p>Read the <elo-link href="/guides/forms">forms guide</elo-link> or the
+<elo-link href="https://developer.mozilla.org/" external>MDN reference</elo-link>.</p>`}
+  />
+
+  <h2>Subtle</h2>
+  <p>Inherits the surrounding text color; the underline stays so links remain recognizable.</p>
+  <Example
+    code={`<p><elo-link href="/components/button" variant="subtle">Button</elo-link> ·
+<elo-link href="/components/card" variant="subtle">Card</elo-link></p>`}
+  />
+
+  <h2>API</h2>
+  <ApiReference tag="elo-link" />
+</Docs>

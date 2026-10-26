@@ -73,7 +73,11 @@ export const buttonStyles = css`
     text-decoration: none;
     background: var(--_bg);
     border: var(--elo-border-width) solid var(--_border);
-    border-radius: var(--elo-radius-md);
+    /* Button groups square off inner corners through these. */
+    border-start-start-radius: var(--elo-button-start-radius, var(--elo-radius-md));
+    border-end-start-radius: var(--elo-button-start-radius, var(--elo-radius-md));
+    border-start-end-radius: var(--elo-button-end-radius, var(--elo-radius-md));
+    border-end-end-radius: var(--elo-button-end-radius, var(--elo-radius-md));
     cursor: pointer;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
